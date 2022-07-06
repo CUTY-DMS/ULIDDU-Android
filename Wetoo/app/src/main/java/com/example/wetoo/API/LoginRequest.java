@@ -6,7 +6,10 @@ import retrofit2.Response;
 
 public class LoginRequest {
 
+    @SerializedName("user-id")
     String userId;
+
+    @SerializedName("password")
     String userPw;
 
     public LoginRequest(String userId, String userPw) {

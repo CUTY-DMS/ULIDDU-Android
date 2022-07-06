@@ -15,14 +15,10 @@ import retrofit2.http.POST;
 
 public interface ServiceApi {
 
-    @POST("/login") // 로그인
-    Call<LoginResponse> Login(
-            @Body LoginRequest loginRequest
-    );
+    @POST("login") // 로그인
+    Call<LoginResponse> login(@Body LoginRequest loginRequest);
 
-    @POST("/register") // 회원가입
-    Call<RegisterResponse> Register(
-            @Body RegisterRequest registerRequest
-    );
+    @POST("register") // 회원가입
+    Call<RegisterResponse> register(@Body RegisterRequest registerRequest);
 
 }

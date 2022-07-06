@@ -37,4 +37,20 @@ public class RegisterRequest {
     public String getNewPw() {
         return NewPw;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setNewId(String newId) {
+        NewId = newId;
+    }
+
+    public void setNewPw(String newPw) {
+        NewPw = newPw;
+    }
 }

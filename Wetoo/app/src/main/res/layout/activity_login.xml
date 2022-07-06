@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etId" />
 
     <Button
-        android:id="@+id/NextbtLogin"
+        android:id="@+id/nextBtLogin"
         android:layout_width="209dp"
         android:layout_height="51dp"
         android:layout_marginTop="44dp"
@@ -56,4 +56,16 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
+    <Button
+        android:id="@+id/nextBtSignUp"
+        android:layout_width="209dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/black"
+        android:text="Sign Up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nextBtLogin" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
