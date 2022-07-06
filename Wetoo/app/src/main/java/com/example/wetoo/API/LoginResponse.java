@@ -4,14 +4,14 @@ import com.google.gson.annotations.SerializedName;
 
 public class LoginResponse {
 
+    @SerializedName("user-id")
     private String userId;
-    private int code;
 
     public String getUserId() {
         return userId;
     }
 
-    public int getCode() {
-        return code;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

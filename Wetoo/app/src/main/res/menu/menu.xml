@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/HomeMenu"
-        android:icon="@drawable/ic_home"
-        android:title="Home"
-        android:enabled="true"
-        app:showAsAction="always" />
 
     <item
         android:id="@+id/SearchMenu"
         android:icon="@drawable/ic_search"
         android:title="Search"
+        android:enabled="true"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/HomeMenu"
+        android:icon="@drawable/ic_home"
+        android:title="Home"
         android:enabled="true"
         app:showAsAction="always" />
 
