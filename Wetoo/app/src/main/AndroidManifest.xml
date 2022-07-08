@@ -16,13 +16,13 @@
         tools:ignore="ExtraText">
         <activity
             android:name=".BottomNav"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Activity.ActivityRegister"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Activity.ActivityLogin"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Activity.MainActivity"
             android:exported="true" >

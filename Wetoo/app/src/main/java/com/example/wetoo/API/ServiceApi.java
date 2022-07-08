@@ -1,4 +1,4 @@
-package com.example.wetoo;
+package com.example.wetoo.API;
 
 import android.app.DownloadManager;
 import android.icu.text.CaseMap;
@@ -16,9 +16,12 @@ import retrofit2.http.POST;
 public interface ServiceApi {
 
     @POST("login") // 로그인
-    Call<LoginResponse> login(@Body LoginRequest loginRequest);
+    Call<LoginResponse> login(
+            @Body LoginRequest loginRequest
+    );
 
     @POST("register") // 회원가입
-    Call<RegisterResponse> register(@Body RegisterRequest registerRequest);
-
+    Call<Void> register(
+            @Body RegisterRequest registerRequest
+    );
 }

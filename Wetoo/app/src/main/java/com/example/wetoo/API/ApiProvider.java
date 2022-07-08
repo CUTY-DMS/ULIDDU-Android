@@ -1,4 +1,4 @@
-package com.example.wetoo;
+package com.example.wetoo.API;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
