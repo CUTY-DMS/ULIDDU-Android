@@ -4,22 +4,22 @@ import com.google.gson.annotations.SerializedName;
 
 public class RegisterRequest {
     @SerializedName("name")
-    private String name;
+    private final String name;
 
     @SerializedName("age")
-    private int age;
+    private final int age;
 
     @SerializedName("user-id")
-    private String NewId;
+    private final String NewId;
 
     @SerializedName("password")
-    private String NewPw;
+    private final String NewPw;
 
-    public RegisterRequest(String name, String NewPw, String NewId, int age) {
+    public RegisterRequest(String name, int age, String newId, String newPw) {
         this.name = name;
         this.age = age;
-        this.NewId = NewId;
-        this.NewPw = NewPw;
+        NewId = newId;
+        NewPw = newPw;
     }
 
     public String getName() {
@@ -36,21 +36,5 @@ public class RegisterRequest {
 
     public String getNewPw() {
         return NewPw;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setNewId(String newId) {
-        NewId = newId;
-    }
-
-    public void setNewPw(String newPw) {
-        NewPw = newPw;
     }
 }
