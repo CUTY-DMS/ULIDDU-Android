@@ -50,21 +50,36 @@
         android:layout_width="209dp"
         android:layout_height="51dp"
         android:layout_marginTop="44dp"
-        android:text="Login"
         android:backgroundTint="@color/black"
+        android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
-    <Button
-        android:id="@+id/nextBtSignUp"
-        android:layout_width="209dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/black"
-        android:text="Sign Up"
+    <TextView
+        android:id="@+id/tvSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="회원가입"
+        android:textColor="#2196F3"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.693"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nextBtLogin" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="149dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="16dp"
+        android:text="우리두가 처음이신가요?"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/tvSignUp"
+        app:layout_constraintHorizontal_bias="0.84"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nextBtLogin" />
 

@@ -1,16 +1,13 @@
 package com.example.wetoo.API;
 
-import android.app.DownloadManager;
-import android.icu.text.CaseMap;
-
-import com.example.wetoo.API.LoginRequest;
-import com.example.wetoo.API.LoginResponse;
-import com.example.wetoo.API.RegisterRequest;
-import com.example.wetoo.API.RegisterResponse;
+import com.example.wetoo.LoginRegister.LoginRequest;
+import com.example.wetoo.LoginRegister.LoginResponse;
+import com.example.wetoo.LoginRegister.RegisterRequest;
+import com.example.wetoo.UserInfo.MyInfoResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Header;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ServiceApi {
@@ -24,4 +21,11 @@ public interface ServiceApi {
     Call<Void> register(
             @Body RegisterRequest registerRequest
     );
+
+    @GET("user") // 내 정보 조회
+    Call<MyInfoResponse> userInfo(
+            String userName, String userId, int userAge
+    );
+
+
 }

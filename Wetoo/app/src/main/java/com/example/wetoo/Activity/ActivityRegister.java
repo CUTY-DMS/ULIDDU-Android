@@ -1,7 +1,5 @@
 package com.example.wetoo.Activity;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,13 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.wetoo.API.RegisterRequest;
-import com.example.wetoo.API.RegisterResponse;
+import com.example.wetoo.LoginRegister.RegisterRequest;
 import com.example.wetoo.API.ApiProvider;
 import com.example.wetoo.API.ServiceApi;
 import com.example.wetoo.databinding.ActivitySignUpBinding;
-
-import java.time.LocalDate;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -89,13 +84,13 @@ public class ActivityRegister extends AppCompatActivity {
                         Intent myIntent = new Intent(getApplicationContext(), ActivityLogin.class);
                         startActivity(myIntent);
                         finish();
-                    } else if (response.code() == 409) {
-                        Toast.makeText(ActivityRegister.this, "중복된 아이디입니다.", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(ActivityRegister.this, "예기치 못한 오류가 발생했습니다.\n다시 시도해주세요!",Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(ActivityRegister.this, "예기치 못한 오류가 발생했습니다.\n다시 시도해주세요....",Toast.LENGTH_SHORT).show();
+                } else if (response.code() == 409) {
+                    Toast.makeText(ActivityRegister.this, "중복된 아이디입니다.", Toast.LENGTH_SHORT).show();
+                } else if (response.code() == 400) {
+                    Toast.makeText(ActivityRegister.this,"비밀번호는 8~15자여야 합니다.",Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
