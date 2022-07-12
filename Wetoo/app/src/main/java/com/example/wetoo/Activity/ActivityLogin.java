@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.wetoo.API.LoginRequest;
-import com.example.wetoo.API.LoginResponse;
+import com.example.wetoo.LoginRegister.LoginRequest;
+import com.example.wetoo.LoginRegister.LoginResponse;
 import com.example.wetoo.API.ApiProvider;
-import com.example.wetoo.BottomNav;
+import com.example.wetoo.Board.BottomNav;
 import com.example.wetoo.API.ServiceApi;
 import com.example.wetoo.databinding.ActivityLoginBinding;
 
@@ -37,7 +37,7 @@ public class ActivityLogin extends AppCompatActivity {
             }
         });
 
-        binding.nextBtSignUp.setOnClickListener(new View.OnClickListener() {
+        binding.tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ActivityRegister.class);

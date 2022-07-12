@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Wetoo"
         tools:ignore="ExtraText">
         <activity
-            android:name=".BottomNav"
+            android:name=".Board.BottomNav"
             android:exported="true" />
         <activity
             android:name=".Activity.ActivityRegister"
