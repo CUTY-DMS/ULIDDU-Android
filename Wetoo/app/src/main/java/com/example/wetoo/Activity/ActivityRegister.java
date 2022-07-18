@@ -79,7 +79,7 @@ public class ActivityRegister extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    if (response.code() == 200) {
+                    if (response.code() == 204) {
                         Toast.makeText(ActivityRegister.this, "로그인을 해주세요", Toast.LENGTH_SHORT).show();
                         Intent myIntent = new Intent(getApplicationContext(), ActivityLogin.class);
                         startActivity(myIntent);
