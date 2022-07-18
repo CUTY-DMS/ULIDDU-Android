@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.wetoo.BottomNav;
 import com.example.wetoo.LoginRegister.LoginRequest;
 import com.example.wetoo.LoginRegister.LoginResponse;
 import com.example.wetoo.API.ApiProvider;
-import com.example.wetoo.Board.BottomNav;
 import com.example.wetoo.API.ServiceApi;
 import com.example.wetoo.databinding.ActivityLoginBinding;
 
@@ -23,6 +23,7 @@ public class ActivityLogin extends AppCompatActivity {
     private ActivityLoginBinding binding;
     public String userId;
     public String password;
+    public static String AccessToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class ActivityLogin extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), ActivityRegister.class);
                 startActivity(intent);
                 finish();
+
             }
         });
     }
@@ -74,6 +76,8 @@ public class ActivityLogin extends AppCompatActivity {
 
                 if (response.isSuccessful() && response.body() != null){
                     if (response.code() == 200) {
+                        AccessToken = response.body().getAccessToken();
+
                         Toast.makeText(ActivityLogin.this, "환영합니다", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), BottomNav.class);
                         startActivity(intent);
@@ -81,9 +85,9 @@ public class ActivityLogin extends AppCompatActivity {
                     else if (response.code() == 404) {
                         Toast.makeText(ActivityLogin.this, "아이디 또는 비밀번호를 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
                     }
-                    else {
-                        Toast.makeText(ActivityLogin.this, "예기치 못한 오류가 발생하였습니다.\n아이디 또는 비밀번호를 다시 확인해주세요.",Toast.LENGTH_SHORT).show();
-                    }
+                }
+                else {
+                    Toast.makeText(ActivityLogin.this, "예기치 못한 오류가 발생하였습니다.\n아이디 또는 비밀번호를 다시 확인해주세요.",Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
