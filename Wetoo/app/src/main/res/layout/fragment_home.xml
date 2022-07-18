@@ -7,22 +7,50 @@
     tools:context=".Fragment.FragmentHome">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
-        android:layout_width="411dp"
-        android:layout_height="454dp"
+        android:id="@+id/recyclerView"
+        android:layout_width="413dp"
+        android:layout_height="416dp"
         android:scrollbarFadeDuration="0"
         android:scrollbarSize="5dp"
         android:scrollbarThumbVertical="@android:color/darker_gray"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView"
         app:layout_constraintVertical_bias="1.0"
         tools:listitem="@layout/board_list">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="409dp"
+        android:layout_height="273dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivDelete"
+        android:layout_width="37dp"
+        android:layout_height="39dp"
+        android:src="@drawable/ic_edit_note"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
+    <ImageView
+        android:id="@+id/ivPost"
+        android:layout_width="36dp"
+        android:layout_height="41dp"
+        android:src="@drawable/ic_baseline_edit_24"
+        app:layout_constraintEnd_toEndOf="@+id/ivDelete"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
