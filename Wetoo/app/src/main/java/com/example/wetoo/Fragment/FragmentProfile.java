@@ -4,14 +4,17 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.wetoo.API.ApiProvider;
 import com.example.wetoo.API.ServiceApi;
+import com.example.wetoo.Activity.ActivityLogin;
+import com.example.wetoo.R;
 import com.example.wetoo.UserInfo.MyInfoResponse;
-import com.example.wetoo.databinding.FragmentProfileBinding;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,54 +22,38 @@ import retrofit2.Response;
 
 public class FragmentProfile extends Fragment {
 
-    private FragmentProfileBinding binding;
-    private String userName;
-    private String userId;
-    private int userAge;
+    private TextView userName;
+    private TextView userId;
+    private TextView userAge;
 
-
-    @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentProfileBinding.inflate(inflater ,container, false);
-        View view = binding.getRoot();
-        return view;
-    }
+        ViewGroup rootview = (ViewGroup) inflater.inflate(R.layout.fragment_profile, container, false);
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
-
-    public void getUserInfo() {
-
-        userName = binding.tvName.getText().toString().trim();
-        userId = binding.tvId.getText().toString().trim();
-        userAge = Integer.parseInt(binding.tvAge.getText().toString());
+        userName = rootview.findViewById(R.id.tvName);
+        userAge = rootview.findViewById(R.id.tvAge);
+        userId = rootview.findViewById(R.id.tvId);
 
         ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
 
+        Log.e("Tag","error");
 
-        Call<MyInfoResponse> call = serviceApi.userInfo(userName, userId, userAge);
-
-        call.enqueue(new Callback<MyInfoResponse>() {
+        serviceApi.MyInfo(ActivityLogin.AccessToken).enqueue(new Callback<MyInfoResponse>() {
             @Override
             public void onResponse(Call<MyInfoResponse> call, Response<MyInfoResponse> response) {
-                int result = response.code();
-
-                if(result == 200) {
-                    binding.tvName.getText();
-                    binding.tvId.getText();
-                    binding.tvAge.getText();
+                if(response.isSuccessful() && response.body() != null) {
+                    userName.setText(response.body().getUserName());
+                    userId.setText(response.body().getUserId());
+                    userAge.setText(response.body().getUserAge());
                 }
             }
 
             @Override
             public void onFailure(Call<MyInfoResponse> call, Throwable t) {
+                System.out.println("오류발생");
             }
         });
-
+        return rootview;
     }
 }
