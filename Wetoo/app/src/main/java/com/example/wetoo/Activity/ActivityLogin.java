@@ -23,7 +23,8 @@ public class ActivityLogin extends AppCompatActivity {
     private ActivityLoginBinding binding;
     public String userId;
     public String password;
-    public static String AccessToken;
+    public static String accesstoken;
+    public static String refreshtoken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +63,11 @@ public class ActivityLogin extends AppCompatActivity {
 
     public void loginResponse() {
 
-        String userId = binding.etId.getText().toString().trim();
+        String[] userId = {binding.etId.getText().toString().trim()};
         String password = binding.etPassword.getText().toString().trim();
 
         // 정보 저장
-        LoginRequest loginRequest = new LoginRequest(userId,password);
+        LoginRequest loginRequest = new LoginRequest(userId[0],password);
 
         ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
 
@@ -76,7 +77,8 @@ public class ActivityLogin extends AppCompatActivity {
 
                 if (response.isSuccessful() && response.body() != null){
                     if (response.code() == 200) {
-                        AccessToken = response.body().getAccessToken();
+                        accesstoken = "Bearer "+response.body().getAccessToken();
+                        refreshtoken = response.body().getRefreshToken();
 
                         Toast.makeText(ActivityLogin.this, "환영합니다", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), BottomNav.class);

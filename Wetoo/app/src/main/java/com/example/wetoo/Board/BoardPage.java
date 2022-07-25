@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.example.wetoo.API.ApiProvider;
@@ -60,7 +59,7 @@ public class EditPage extends AppCompatActivity {
 
         ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
 
-        Call<BoardResponse> call = serviceApi.borad(ActivityLogin.AccessToken, boardRequest);
+        Call<BoardResponse> call = serviceApi.board(ActivityLogin.accesstoken, boardRequest);
 
         call.enqueue(new Callback<BoardResponse>() {
             @Override
