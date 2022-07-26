@@ -1,22 +1,14 @@
 package com.example.wetoo.Board;
 
 public class Post {
-    private String userId;
     private String title;
     private String date;
+    private String content;
 
-    public Post(String userId, String title, String date) {
-        this.userId = userId;
+    public Post(String title, String date, String content) {
         this.title = title;
         this.date = date;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
+        this.content = content;
     }
 
     public String getTitle() {
@@ -33,5 +25,13 @@ public class Post {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

@@ -1,85 +1,86 @@
-package com.example.wetoo;
+package com.example.wetoo.Board;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.wetoo.API.ApiProvider;
 import com.example.wetoo.API.ServiceApi;
 import com.example.wetoo.Activity.ActivityLogin;
-import com.example.wetoo.Board.BoardRequest;
-import com.example.wetoo.Board.BoardResponse;
-import com.example.wetoo.Fragment.FragmentHome;
-import com.example.wetoo.databinding.ActivityEditPageBinding;
+import com.example.wetoo.R;
+import com.example.wetoo.databinding.ActivityBoardPageBinding;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EditPage extends AppCompatActivity {
+public class BoardPage extends AppCompatActivity {
 
-    private ActivityEditPageBinding binding;
+    private ActivityBoardPageBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityEditPageBinding.inflate(getLayoutInflater());
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        binding = ActivityBoardPageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.btBoard.setOnClickListener(new View.OnClickListener() {
+        binding.btPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentHome fragmentHome = new FragmentHome();
-                board();
+                plus();
             }
         });
     }
-    public void board() {
-        String title = binding.etTitle.getText().toString();
-        String content = binding.etContent.getText().toString();
-
-        if (binding.etTitle.getText().toString().length() == 0) {
-            Toast.makeText(EditPage.this,"제목을 입력해주세요",Toast.LENGTH_SHORT).show();
-        } if (binding.etContent.getText().toString().length() == 0) {
-            Toast.makeText(EditPage.this, "내용을 입력해주세요",Toast.LENGTH_SHORT).show();
-        } else {
-            boardStart();
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction()==MotionEvent.ACTION_OUTSIDE) {
+            return false;
         }
+        return true;
     }
 
-    public void boardStart() {
-        String title = binding.etTitle.getText().toString();
-        String content = binding.etContent.getText().toString();
+    public void plus() {
+        String title = binding.title.getText().toString();
+        String content = binding.content.getText().toString();
+
+        if(title.length() == 0)
+            Toast.makeText(getApplicationContext(),"제목을 작성해주세요", Toast.LENGTH_SHORT).show();
+        if(content.length()==0)
+            Toast.makeText(getApplicationContext(),"내용을 작성해주세요",Toast.LENGTH_SHORT).show();
+        else
+            post();
+    }
+    public void post() {
+        String title = binding.title.getText().toString();
+        String content = binding.content.getText().toString();
         String ispublic = binding.ispublic.getText().toString();
 
-        BoardRequest boardRequest = new BoardRequest(title, content, ispublic);
+        BoardRequest boardRequest = new BoardRequest(title,content,ispublic);
 
         ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
 
-        Call<BoardResponse> call = serviceApi.board(ActivityLogin.accesstoken, boardRequest);
-
-        call.enqueue(new Callback<BoardResponse>() {
+        Call<BoardRequest> call = serviceApi.board(ActivityLogin.accesstoken, boardRequest);
+        call.enqueue(new Callback<BoardRequest>() {
             @Override
-            public void onResponse(Call<BoardResponse> call, Response<BoardResponse> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(EditPage.this,"글이 등록되었습니다",Toast.LENGTH_SHORT).show();
-
-                    Intent intent = new Intent(getApplicationContext(), FragmentHome.class);
-                    intent.putExtra("new",true);
-                    intent.putExtra("title", title);
-                    intent.putExtra("content", content);
-                    startActivity(intent);
-                    finish();
-                }
+            public void onResponse(Call<BoardRequest> call, Response<BoardRequest> response) {
+                Toast.makeText(BoardPage.this, "게시글 등록이 완료되었습니다!", Toast.LENGTH_SHORT).show();
+                finish();
             }
 
             @Override
-            public void onFailure(Call<BoardResponse> call, Throwable t) {
-                Toast.makeText(EditPage.this, "글이 등록되지 않았습니다",Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<BoardRequest> call, Throwable t) {
+                finish();
             }
         });
+
+
     }
+
 }

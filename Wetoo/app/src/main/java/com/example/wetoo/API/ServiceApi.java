@@ -1,12 +1,12 @@
 package com.example.wetoo.API;
 
 import com.example.wetoo.Board.BoardRequest;
-import com.example.wetoo.Board.BoardResponse;
 import com.example.wetoo.DetailResponse;
 import com.example.wetoo.LoginRegister.LoginRequest;
 import com.example.wetoo.LoginRegister.LoginResponse;
 import com.example.wetoo.LoginRegister.RegisterRequest;
 import com.example.wetoo.Search.SearchResponse;
+import com.example.wetoo.TodoResponse;
 import com.example.wetoo.UserInfo.MyInfoResponse;
 
 import retrofit2.Call;
@@ -32,9 +32,8 @@ public interface ServiceApi {
     );
 
     @POST("todo") // 투두리스트 추가
-    Call<BoardResponse> board(
+    Call<BoardRequest> board(
             @Header("Authorization") String token,
-            @Header("X-Refresh-Token") String refreshToken,
             @Body BoardRequest boardRequest
     );
 
@@ -44,8 +43,14 @@ public interface ServiceApi {
             @Header("X-Refresh-Token") String refreshToken
     );
 
-    @GET("todo/{id}")
+    @GET("todo/{id}")   // 투두 상세 보기
     Call<DetailResponse> detail(
             @Header("Authorization") String token
     );
+
+    @GET("todo/list/user/{id}")
+    Call<TodoResponse> todo(
+            @Header("Authorization") String token
+    );
+
 }

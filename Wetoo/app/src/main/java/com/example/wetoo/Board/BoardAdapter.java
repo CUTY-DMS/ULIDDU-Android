@@ -1,6 +1,5 @@
 package com.example.wetoo.Board;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,49 +11,55 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.wetoo.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.CustomViewHolder> {
+public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> {
 
-    private ArrayList<Post> postArrayList;
-    private Context context;
+    private ArrayList<Post> listData = new ArrayList<>();
 
-    public BoardAdapter(ArrayList<Post> postArrayList, Context context) {
-        this.postArrayList = postArrayList;
-        this.context = context;
+    public BoardAdapter(ArrayList<Post> listData) {
+        this.listData = listData;
     }
 
     @NonNull
     @Override
-    public BoardAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.board_list,parent,false);
-        CustomViewHolder holder = new CustomViewHolder(view);
-        return holder;
+    public BoardAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.board_item,parent,false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BoardAdapter.CustomViewHolder holder, int position) {
-        holder.tvTitle.setText(postArrayList.get(position).getTitle());
-        holder.tvUserId.setText(postArrayList.get(position).getUserId());
-        holder.tvTimestamp.setText(postArrayList.get(position).getDate());
+    public void onBindViewHolder(@NonNull BoardAdapter.ViewHolder holder, int position) {
+        holder.onBind(listData.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return (postArrayList != null ? postArrayList.size() : 0);
+        return listData.size();
     }
 
+    void addItem(Post data) {
+        listData.add(data);
+    }
 
-    public class CustomViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView tvUserId;
-        private TextView tvTimestamp;
-        private TextView tvTitle;
+        private TextView title;
+        private TextView content;
+        private TextView date;
 
-        public CustomViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.tvUserId = itemView.findViewById(R.id.tvUserId);
-            this.tvTimestamp = itemView.findViewById(R.id.tvTimestamp);
-            this.tvTitle = itemView.findViewById(R.id.tvTitle);
+
+            title = itemView.findViewById(R.id.tvtitle);
+            content = itemView.findViewById(R.id.tvBoardContent);
+            date = itemView.findViewById(R.id.tvTodoDate);
+        }
+
+        void onBind(Post data) {
+            title.setText(data.getTitle());
+            content.setText(data.getContent());
+            date.setText(data.getDate());
         }
     }
 }
