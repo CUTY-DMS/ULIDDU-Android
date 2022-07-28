@@ -8,8 +8,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
+<<<<<<< HEAD
+        android:layout_width="413dp"
+        android:layout_height="375dp"
+=======
         android:layout_width="409dp"
         android:layout_height="377dp"
+>>>>>>> main
         android:scrollbarFadeDuration="0"
         android:scrollbarSize="5dp"
         android:scrollbarThumbVertical="@android:color/darker_gray"
@@ -18,9 +23,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView"
-        app:layout_constraintVertical_bias="1.0"
-        tools:listitem="@layout/board_list">
+        app:layout_constraintTop_toBottomOf="@+id/ivDelete"
+        tools:listitem="@layout/todo_list">
 
     </androidx.recyclerview.widget.RecyclerView>
 
