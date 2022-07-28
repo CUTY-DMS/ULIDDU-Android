@@ -1,5 +1,6 @@
 package com.example.wetoo.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,7 +36,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
             title = view.findViewById(R.id.tvtitle);
             date = view.findViewById(R.id.tvdate);
             iscompleted = view.findViewById(R.id.tvsuccess);
-            isliked = view.findViewById(R.id.ivLike);
+            isliked = view.findViewById(R.id.tvLike);
         }
     }
 
@@ -52,7 +53,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TodoViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TodoViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.id.setText(list.get(position).getId());
         holder.title.setText(list.get(position).getTitle());
@@ -87,6 +88,9 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
 
     @Override
     public int getItemCount() {
+        if (list == null) {
+            return 0;
+        }
         return list.size();
     }
 }

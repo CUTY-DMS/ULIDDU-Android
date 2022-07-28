@@ -29,13 +29,6 @@
         android:orientation="vertical"
         android:padding="24dp">
 
-        <Switch
-            android:id="@+id/ispublic"
-            android:layout_gravity="center|right"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="공개" />
-
         <EditText
             android:id="@+id/title"
             android:layout_width="match_parent"

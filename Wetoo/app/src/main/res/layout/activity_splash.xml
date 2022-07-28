@@ -9,8 +9,8 @@
     tools:context=".Activity.SplashActivity">
 
     <ImageView
-        android:layout_width="197dp"
-        android:layout_height="132dp"
-        android:background="@drawable/uliddu" />
+        android:layout_width="224dp"
+        android:layout_height="218dp"
+        android:background="@drawable/wetoologo" />
 
 </RelativeLayout>

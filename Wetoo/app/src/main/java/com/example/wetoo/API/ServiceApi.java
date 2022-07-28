@@ -4,6 +4,7 @@ import com.example.wetoo.Request.BoardRequest;
 import com.example.wetoo.Request.EditRequest;
 import com.example.wetoo.Request.TodoRequest;
 import com.example.wetoo.Response.DetailResponse;
+import com.example.wetoo.Response.MyTodoResponse;
 import com.example.wetoo.Response.SearchResponse;
 import com.example.wetoo.Response.TodoResponse;
 
@@ -19,6 +20,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
@@ -41,19 +43,24 @@ public interface ServiceApi {
     );
 
     @GET("search/{userid}") // 유저 정보 검색
-    Call<List<SearchResponse>> Search(
-            @Header("Authorization") String token,
-            @Header("X-Refresh-Token") String refreshToken
+    Call<SearchResponse> search(
+            @Header("Authorization") String token
     );
 
-    @POST("todo")
+    @POST("todo")   // 투두 추가
     Call<Void> board(
             @Header("Authorization") String token,
             @Body BoardRequest boardRequest
     );
 
-    @GET("todo/list/user/{id}") // 유저 투두리스트
-    Call<ArrayList<TodoResponse>> todo(
+    @GET("todo/list/user/{id}")
+    Call<List<TodoResponse>> todo(
+            @Header("Authorization") String token,
+            @Body TodoRequest todoRequest
+    );
+
+    @GET("todo/list")   // 내 투두리스트
+    Call<MyTodoResponse> myTodo(
             @Header("Authorization") String token,
             @Body TodoRequest todoRequest
     );
@@ -76,12 +83,6 @@ public interface ServiceApi {
 
     @PUT("todo/{id}")
     Call<Void> success(
-            @Header("Authorization") String token
-    );
-
-
-    @GET("todo/list/user/{id}")
-    Call<TodoResponse> todo(
             @Header("Authorization") String token
     );
 

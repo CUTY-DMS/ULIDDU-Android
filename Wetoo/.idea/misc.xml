@@ -18,6 +18,7 @@
         <entry key="..\:/Users/DSM2022/Desktop/Wetoo/app/src/main/res/menu/menu.xml" value="0.1" />
         <entry key="..\:/Users/DSM2022/Desktop/Wetoo/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.113" />
         <entry key="..\:/Users/DSM2022/Desktop/Wetoo/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1085" />
+        <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/drawable/ic_add.xml" value="0.255" />
         <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.255" />
         <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/drawable/ic_delete.xml" value="0.255" />
         <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/drawable/ic_edit_note.xml" value="0.255" />
@@ -25,19 +26,28 @@
         <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1055" />
         <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/drawable/ic_profile.xml" value="0.255" />
         <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/drawable/menu_item_color.xml" value="0.1055" />
-        <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/activity_edit_page.xml" value="0.2" />
+        <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/drawable/splash_base.xml" value="0.1" />
+        <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/activity_board_page.xml" value="0.2" />
+        <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/activity_detail_page.xml" value="0.264" />
+        <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/activity_edit_page.xml" value="0.1" />
         <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/activity_login.xml" value="0.264" />
-        <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/activity_main.xml" value="0.24947916666666667" />
+        <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/activity_main.xml" value="0.176" />
         <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/activity_sign_up.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/activity_splash.xml" value="0.136" />
+        <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/board_item.xml" value="0.2" />
         <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/board_item_list.xml" value="0.2" />
         <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/board_list.xml" value="0.2" />
         <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/bottom_nav.xml" value="0.264" />
         <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/fragment_home.xml" value="0.264" />
-        <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
-        <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/fragment_search.xml" value="0.2" />
+        <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
+        <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/fragment_search.xml" value="0.264" />
         <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/item_list.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/todo_list.xml" value="0.2" />
         <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/user_item.xml" value="0.24947916666666667" />
+        <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/layout/user_list.xml" value="0.264" />
         <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/menu/menu.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.105" />
+        <entry key="..\:/Users/DSM2022/Desktop/git/ULIDDU-Android/Wetoo/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.105" />
       </map>
     </option>
   </component>

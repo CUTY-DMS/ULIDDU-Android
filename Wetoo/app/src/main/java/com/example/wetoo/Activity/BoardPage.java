@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -30,15 +31,12 @@ public class BoardPage extends AppCompatActivity {
     private Boolean ispublic;
     private CalendarView calendarView;
 
-    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         binding = ActivityBoardPageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        calendarView = findViewById(R.layout.fragment_home).findViewById(R.id.calendarView);
 
         binding.btPlus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,14 +57,6 @@ public class BoardPage extends AppCompatActivity {
     public void plus() {
         String title = binding.title.getText().toString();
         String content = binding.content.getText().toString();
-        ispublic = false;
-        Calendar calendar = Calendar.getInstance();
-        //캘린더뷰에서 날짜값 읽어오기
-        Date date = new Date(calendarView.getDate());
-        //캘린더 객체에 캘린더뷰 값을 넣음
-        calendar.setTime(date);
-
-        tododate = Integer.toString(calendar.get(Calendar.YEAR)) + "-" + Integer.toString(calendar.get(Calendar.MONTH) + 1) + "-" + Integer.toString(calendar.get(Calendar.DATE));
 
         if (title.length() == 0)
             Toast.makeText(getApplicationContext(), "제목을 작성해주세요", Toast.LENGTH_SHORT).show();
@@ -79,25 +69,22 @@ public class BoardPage extends AppCompatActivity {
     public void post() {
         String title = binding.title.getText().toString();
         String content = binding.content.getText().toString();
+        ispublic = false;
 
         BoardRequest boardRequest = new BoardRequest(title, content, ispublic, tododate);
 
         ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
 
-        Call<BoardRequest> call = serviceApi.board(ActivityLogin.accesstoken, boardRequest);
-        call.enqueue(new Callback<BoardRequest>() {
+        Call<Void> call = serviceApi.board(ActivityLogin.accesstoken, boardRequest);
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<BoardRequest> call, Response<BoardRequest> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 Toast.makeText(BoardPage.this, "게시글 등록이 완료되었습니다!", Toast.LENGTH_SHORT).show();
                 finish();
             }
 
             @Override
-            public void onFailure(Call<BoardRequest> call, Throwable t) {
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
+            public void onFailure(Call<Void> call, Throwable t) {
             }
         });
 

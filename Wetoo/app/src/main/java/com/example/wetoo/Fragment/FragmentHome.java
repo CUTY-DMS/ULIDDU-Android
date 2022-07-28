@@ -41,7 +41,7 @@ public class FragmentHome extends Fragment {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private TodoAdapter todoAdapter;
-    ArrayList<TodoResponse> todoResponsesList;
+    List<TodoResponse> todoResponsesList;
     private ImageView ivPost;
     private CalendarView calendarView;
 
@@ -71,8 +71,7 @@ public class FragmentHome extends Fragment {
         //캘린더 객체에 캘린더뷰 값을 넣음
         calendar.setTime(date);
 
-
-        String todoyearmonth = Integer.toString(calendar.get(Calendar.YEAR)) + "-" + Integer.toString(calendar.get(Calendar.MONTH) + 1);
+        String todoyearmonth = Integer.toString(calendar.get(Calendar.YEAR)) + "-0" + Integer.toString(calendar.get(Calendar.MONTH) + 1);
 
         TodoRequest todoRequest = new TodoRequest(todoyearmonth);
 
@@ -80,23 +79,26 @@ public class FragmentHome extends Fragment {
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        todoAdapter = new TodoAdapter(todoResponsesList);
+        todoAdapter = new TodoAdapter((ArrayList<TodoResponse>) todoResponsesList);
         recyclerView.setAdapter(todoAdapter);
 
         ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
 
-        serviceApi.todo(ActivityLogin.accesstoken, todoRequest).enqueue(new Callback<ArrayList<TodoResponse>>() {
+        serviceApi.todo(ActivityLogin.accesstoken, todoRequest).enqueue(new Callback<List<TodoResponse>>() {
             @Override
-            public void onResponse(Call<ArrayList<TodoResponse>> call, Response<ArrayList<TodoResponse>> response) {
-                todoResponsesList.addAll(response.body());
-                todoAdapter.notifyDataSetChanged();
+            public void onResponse(Call<List<TodoResponse>> call, Response<List<TodoResponse>> response) {
+                    Log.e("error","errrrrrorrr");
+                    todoResponsesList.addAll(response.body());
+                    todoAdapter.notifyDataSetChanged();
             }
 
             @Override
-            public void onFailure(Call<ArrayList<TodoResponse>> call, Throwable t) {
-
+            public void onFailure(Call<List<TodoResponse>> call, Throwable t) {
+                Toast.makeText(getContext(), "error", Toast.LENGTH_SHORT).show();
             }
         });
+
+
         return rootview;
     }
 }
