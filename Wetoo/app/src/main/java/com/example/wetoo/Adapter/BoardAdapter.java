@@ -1,4 +1,4 @@
-package com.example.wetoo.Board;
+package com.example.wetoo.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.wetoo.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> {
 

@@ -94,7 +94,10 @@ public class BoardPage extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<BoardRequest> call, Throwable t) {
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
             }
         });
 

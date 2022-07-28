@@ -1,8 +1,10 @@
-package com.example.wetoo;
+package com.example.wetoo.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.wetoo.R;
 
 public class DetailPage extends AppCompatActivity {
 
