@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.wetoo.LoginRegister.RegisterRequest;
+import com.example.wetoo.Request.RegisterRequest;
 import com.example.wetoo.API.ApiProvider;
 import com.example.wetoo.API.ServiceApi;
 import com.example.wetoo.databinding.ActivitySignUpBinding;

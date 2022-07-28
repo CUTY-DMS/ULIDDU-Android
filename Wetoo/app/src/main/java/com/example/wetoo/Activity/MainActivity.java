@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.wetoo.BottomNav;
 import com.example.wetoo.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {

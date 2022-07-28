@@ -1,4 +1,4 @@
-package com.example.wetoo;
+package com.example.wetoo.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.example.wetoo.Activity.MainActivity;
+import com.example.wetoo.R;
 
 public class SplashActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.wetoo.LoginRegister;
+package com.example.wetoo.Request;
 
 import com.google.gson.annotations.SerializedName;
 

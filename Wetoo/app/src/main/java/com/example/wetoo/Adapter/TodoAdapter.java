@@ -33,7 +33,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
             super(view);
             id = view.findViewById(R.id.tvuserid);
             title = view.findViewById(R.id.tvtitle);
-            date = view.findViewById(R.id.tvDate);
+            date = view.findViewById(R.id.tvdate);
             iscompleted = view.findViewById(R.id.tvsuccess);
             isliked = view.findViewById(R.id.ivLike);
         }

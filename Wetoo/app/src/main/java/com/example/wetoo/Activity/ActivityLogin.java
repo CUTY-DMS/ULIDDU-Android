@@ -7,9 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.wetoo.BottomNav;
-import com.example.wetoo.LoginRegister.LoginRequest;
-import com.example.wetoo.LoginRegister.LoginResponse;
+import com.example.wetoo.Request.LoginRequest;
+import com.example.wetoo.Response.LoginResponse;
 import com.example.wetoo.API.ApiProvider;
 import com.example.wetoo.API.ServiceApi;
 import com.example.wetoo.databinding.ActivityLoginBinding;

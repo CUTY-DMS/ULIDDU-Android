@@ -1,4 +1,4 @@
-package com.example.wetoo;
+package com.example.wetoo.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

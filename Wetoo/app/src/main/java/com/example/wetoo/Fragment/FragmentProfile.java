@@ -16,7 +16,7 @@ import com.example.wetoo.API.ServiceApi;
 import com.example.wetoo.Activity.ActivityLogin;
 import com.example.wetoo.Board.BoardRequest;
 import com.example.wetoo.R;
-import com.example.wetoo.UserInfo.MyInfoResponse;
+import com.example.wetoo.Response.MyInfoResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
