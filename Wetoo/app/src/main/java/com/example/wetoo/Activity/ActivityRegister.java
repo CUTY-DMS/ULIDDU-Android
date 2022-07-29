@@ -58,6 +58,10 @@ public class ActivityRegister extends AppCompatActivity {
 
         if (newId.trim().length() == 0 || newPw.trim().length() == 0 || name.trim().length() == 0 || newId == null || newPw == null || name == null || age <= 0) {
             Toast.makeText(ActivityRegister.this, "올바른 정보를 입력해주세요.", Toast.LENGTH_SHORT).show();
+        } else if (newId.length() > 10) {
+            Toast.makeText(ActivityRegister.this, "아이디를 10자 이하로 작성해주세요", Toast.LENGTH_SHORT).show();
+        } else if (name.length() > 10) {
+            Toast.makeText(ActivityRegister.this,"이름을 10자 이하로 작성해주세요",Toast.LENGTH_SHORT).show();
         } else {
             registerResponse();
         }
