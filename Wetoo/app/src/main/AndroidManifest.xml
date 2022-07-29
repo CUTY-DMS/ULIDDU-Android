@@ -15,8 +15,9 @@
         android:usesCleartextTraffic="true"
         tools:ignore="ExtraText">
         <activity
-            android:name=".Edit"
-            android:exported="false" />
+            android:name=".Activity.Edit"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
             android:name=".Activity.MainActivity"
             android:exported="false" />
