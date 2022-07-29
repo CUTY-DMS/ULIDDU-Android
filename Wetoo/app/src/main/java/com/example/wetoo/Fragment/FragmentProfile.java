@@ -90,7 +90,7 @@ public class FragmentProfile extends Fragment {
         calendar.setTime(date);
         tododate = calendar.get(Calendar.YEAR) + "-0" + calendar.get(Calendar.MONTH) + 1;
 
-        TodoRequest todoRequest = new TodoRequest(tododate);
+        /*TodoRequest todoRequest = new TodoRequest(tododate);
 
         serviceApi.myTodo(ActivityLogin.accesstoken, todoRequest).enqueue(new Callback<MyTodoResponse>() {
             @Override
@@ -106,7 +106,7 @@ public class FragmentProfile extends Fragment {
             public void onFailure(Call<MyTodoResponse> call, Throwable t) {
 
             }
-        });
+        });*/
 
         return rootview;
     }

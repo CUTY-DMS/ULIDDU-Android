@@ -1,12 +1,16 @@
 package com.example.wetoo.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.wetoo.Fragment.FragmentHome;
 import com.example.wetoo.Request.LoginRequest;
 import com.example.wetoo.Response.LoginResponse;
 import com.example.wetoo.API.ApiProvider;
@@ -20,16 +24,18 @@ import retrofit2.Response;
 public class ActivityLogin extends AppCompatActivity {
 
     private ActivityLoginBinding binding;
-    public String userId;
+    public static String userId;
     public String password;
     public static String accesstoken;
     public static String refreshtoken;
+    FragmentHome fragmentHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
 
         binding.nextBtLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +56,7 @@ public class ActivityLogin extends AppCompatActivity {
     }
 
     private void login() {
-        userId = binding.etId.getText().toString();
+        String userId = binding.etId.getText().toString();
         password = binding.etPassword.getText().toString();
 
         if(userId.trim().length() == 0 || password.trim().length() == 0 || userId == null || password == null){
@@ -62,11 +68,25 @@ public class ActivityLogin extends AppCompatActivity {
 
     public void loginResponse() {
 
-        String[] userId = {binding.etId.getText().toString().trim()};
+        userId = binding.etId.getText().toString().trim();
         String password = binding.etPassword.getText().toString().trim();
 
         // 정보 저장
-        LoginRequest loginRequest = new LoginRequest(userId[0],password);
+        LoginRequest loginRequest = new LoginRequest(userId,password);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        /*Bundle bundle = new Bundle();
+        //1. 입력 메시지
+        userId = binding.etId.getText().toString();
+        //2. 데이터 담기
+        bundle.putString("userid",userId);
+        //3. 프래그먼트 선언
+        FragmentHome fragmentHome = new FragmentHome();
+        //4. 프래그먼트 데이터 넘기기
+        fragmentHome.setArguments(bundle);*/
+
 
         ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
 

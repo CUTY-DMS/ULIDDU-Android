@@ -22,6 +22,7 @@ import com.example.wetoo.API.ApiProvider;
 import com.example.wetoo.API.ServiceApi;
 import com.example.wetoo.Activity.ActivityLogin;
 import com.example.wetoo.Activity.BoardPage;
+import com.example.wetoo.Activity.Edit;
 import com.example.wetoo.R;
 import com.example.wetoo.Request.TodoRequest;
 import com.example.wetoo.Response.TodoResponse;
@@ -44,18 +45,27 @@ public class FragmentHome extends Fragment {
     List<TodoResponse> todoResponsesList;
     private ImageView ivPost;
     private CalendarView calendarView;
+    private ImageView ivDelete;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
-        ViewGroup rootview = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
-
+        View rootview = inflater.inflate(R.layout.fragment_home, container, false);
 
         recyclerView = rootview.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         calendarView = rootview.findViewById(R.id.calendarView);
         ivPost = rootview.findViewById(R.id.ivPost);
+        ivDelete = rootview.findViewById(R.id.ivDelete);
+
+        ivDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent EditIntent = new Intent(getActivity(), Edit.class);
+                startActivity(EditIntent);
+            }
+        });
 
         ivPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,14 +87,26 @@ public class FragmentHome extends Fragment {
 
         todoResponsesList = new ArrayList<>();
         linearLayoutManager = new LinearLayoutManager(getActivity());
+
         recyclerView.setLayoutManager(linearLayoutManager);
+
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         todoAdapter = new TodoAdapter((ArrayList<TodoResponse>) todoResponsesList);
         recyclerView.setAdapter(todoAdapter);
 
-        ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
 
-        serviceApi.todo(ActivityLogin.accesstoken, todoRequest).enqueue(new Callback<List<TodoResponse>>() {
+        todoResponsesList.add(new TodoResponse("haeun","안녕하세요","2022-07-29",false,true));
+        todoResponsesList.add(new TodoResponse("rlaisqls","안녕하세요","2022-07-29",false,true));
+        todoResponsesList.add(new TodoResponse("rlaisqls","안녕하세요","2022-07-29",false,true));
+        todoResponsesList.add(new TodoResponse("haeun","안녕하세요","2022-07-29",false,true));
+        todoResponsesList.add(new TodoResponse("haeun","안녕하세요","2022-07-29",false,true));
+        todoResponsesList.add(new TodoResponse("haeun","안녕하세요","2022-07-29",false,true));
+        todoResponsesList.add(new TodoResponse("haeun","안녕하세요","2022-07-29",false,true));
+        todoResponsesList.add(new TodoResponse("haeun","안녕하세요","2022-07-29",false,true));
+
+        /*ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
+
+        serviceApi.todo(ActivityLogin.accesstoken, Long.parseLong(ActivityLogin.userId), todoRequest).enqueue(new Callback<List<TodoResponse>>() {
             @Override
             public void onResponse(Call<List<TodoResponse>> call, Response<List<TodoResponse>> response) {
                     Log.e("error","errrrrrorrr");
@@ -96,7 +118,7 @@ public class FragmentHome extends Fragment {
             public void onFailure(Call<List<TodoResponse>> call, Throwable t) {
                 Toast.makeText(getContext(), "error", Toast.LENGTH_SHORT).show();
             }
-        });
+        }); */
 
 
         return rootview;

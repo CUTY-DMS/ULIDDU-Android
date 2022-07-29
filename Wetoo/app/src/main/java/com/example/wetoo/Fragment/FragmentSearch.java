@@ -51,10 +51,10 @@ public class FragmentSearch extends Fragment {
         recyclerView.setAdapter(searchAdapter);
 
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        /*searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                search(query);
+                // search(query);
                 return false;
             }
 
@@ -62,14 +62,12 @@ public class FragmentSearch extends Fragment {
             public boolean onQueryTextChange(String newText) {
                 return false;
             }
-        });
-
-
-
-
+        });*/
         return view;
     }
+
     private void search(String query) {
+
         ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
 
         serviceApi.search(ActivityLogin.accesstoken).enqueue(new Callback<SearchResponse>() {

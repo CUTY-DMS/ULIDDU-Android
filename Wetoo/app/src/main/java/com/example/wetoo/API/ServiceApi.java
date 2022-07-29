@@ -4,6 +4,7 @@ import com.example.wetoo.Request.BoardRequest;
 import com.example.wetoo.Request.EditRequest;
 import com.example.wetoo.Request.TodoRequest;
 import com.example.wetoo.Response.DetailResponse;
+import com.example.wetoo.Response.EditResponse;
 import com.example.wetoo.Response.MyTodoResponse;
 import com.example.wetoo.Response.SearchResponse;
 import com.example.wetoo.Response.TodoResponse;
@@ -25,6 +26,7 @@ import retrofit2.http.Header;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface ServiceApi {
     @POST("login") // 로그인
@@ -53,9 +55,10 @@ public interface ServiceApi {
             @Body BoardRequest boardRequest
     );
 
-    @GET("todo/list/user/{id}")
+    @HTTP(method = "GET", path = "todo/list/user/{id}", hasBody = true)
     Call<List<TodoResponse>> todo(
             @Header("Authorization") String token,
+            @Path("id") long id,
             @Body TodoRequest todoRequest
     );
 
@@ -71,14 +74,16 @@ public interface ServiceApi {
     );
 
     @PATCH("todo/{id}")
-    Call<Void> edit(
+    Call<EditResponse> edit(
             @Header("Authorization") String token,
+            @Path("id") long id,
             @Body EditRequest editRequest
     );
 
-    @DELETE("todo/{id}")
+    @HTTP(method = "DELETE",path = "todo/{id}",hasBody = false)
     Call<Void> delete(
-            @Header("Authorization") String token
+            @Header("Authorization") String token,
+            @Path("id") long id
     );
 
     @PUT("todo/{id}")

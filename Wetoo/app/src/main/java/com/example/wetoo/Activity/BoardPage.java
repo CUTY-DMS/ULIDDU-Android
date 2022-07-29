@@ -3,6 +3,7 @@ package com.example.wetoo.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -29,6 +30,7 @@ public class BoardPage extends AppCompatActivity {
     private ActivityBoardPageBinding binding;
     private String tododate;
     private Boolean ispublic;
+    private static String content;
     private CalendarView calendarView;
 
     @Override
@@ -69,7 +71,19 @@ public class BoardPage extends AppCompatActivity {
     public void post() {
         String title = binding.title.getText().toString();
         String content = binding.content.getText().toString();
+        /*Intent intent = new Intent();
+        intent = new Intent(getApplicationContext(),DetailPage.class);
+        intent.putExtra("content",content);*/
         ispublic = false;
+
+        Calendar calendar = Calendar.getInstance();
+        //캘린더뷰에서 날짜값 읽어오기
+        Date date = new Date(calendarView.getDate());
+        //캘린더 객체에 캘린더뷰 값을 넣음
+        calendar.setTime(date);
+
+        tododate = Integer.toString(calendar.get(Calendar.YEAR)) + "-0" + Integer.toString(calendar.get(Calendar.MONTH) + 1)+"-"+Integer.toString(calendar.get(Calendar.DATE));
+
 
         BoardRequest boardRequest = new BoardRequest(title, content, ispublic, tododate);
 
