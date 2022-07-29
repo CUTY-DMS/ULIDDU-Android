@@ -28,6 +28,15 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         }
     }
 
+    public void filterList(List<SearchResponse> filterllist) {
+        // below line is to add our filtered
+        // list in our course array list.
+        list = filterllist;
+        // below line is to notify our adapter
+        // as change in recycler view data.
+        notifyDataSetChanged();
+    }
+
     public SearchAdapter(List<SearchResponse> list) {
         this.list = list;
     }
@@ -41,6 +50,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     @Override
     public void onBindViewHolder(@NonNull SearchViewHolder holder, int position) {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         holder.id.setText(list.get(position).getId());
     }
 

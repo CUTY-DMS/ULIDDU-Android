@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.wetoo.API.ApiProvider;
 import com.example.wetoo.API.ServiceApi;
@@ -50,11 +51,9 @@ public class FragmentSearch extends Fragment {
         searchAdapter = new SearchAdapter(searchResponseList);
         recyclerView.setAdapter(searchAdapter);
 
-
-        /*searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                // search(query);
                 return false;
             }
 
@@ -62,15 +61,19 @@ public class FragmentSearch extends Fragment {
             public boolean onQueryTextChange(String newText) {
                 return false;
             }
-        });*/
+        });
+
+        search();
+
         return view;
     }
 
-    private void search(String query) {
+
+    private void search() {
 
         ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
 
-        serviceApi.search(ActivityLogin.accesstoken).enqueue(new Callback<SearchResponse>() {
+        serviceApi.search(ActivityLogin.accesstoken,ActivityLogin.userId).enqueue(new Callback<SearchResponse>() {
             @Override
             public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
                 searchResponseList.add(response.body());
