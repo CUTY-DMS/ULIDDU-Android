@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,7 +61,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         public TodoViewHolder(@NonNull View itemview) {
             super(itemview);
             id = itemview.findViewById(R.id.tvuserid);
-            title = itemview.findViewById(R.id.tvtitle);
+            title = itemview.findViewById(R.id.tvTitle);
             date = itemview.findViewById(R.id.tvdate);
             iscompleted = itemview.findViewById(R.id.tvsuccess);
             isliked = itemview.findViewById(R.id.tvLike);
@@ -76,8 +77,16 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         holder.id.setText(list.get(position).getId());
         holder.title.setText(list.get(position).getTitle());
         holder.date.setText(list.get(position).getTodoDate());
-        if (list.get(position).getIscompleted() == true) {
+
+        holder.title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
+        if (list.get(position).getIscompleted() == true) { {
             holder.iscompleted.setText("완료");
+        }
         } else {
             holder.iscompleted.setText("미완료");
         }
@@ -97,6 +106,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
                 intent.putExtra("title", list.get(position).getTitle());
                 intent.putExtra("userid", list.get(position).getId());
                 intent.putExtra("date", list.get(position).getTodoDate());
+                intent.putExtra("iscompleted",list.get(position).getIscompleted());
 
                 view.getContext().startActivity(intent);
             }

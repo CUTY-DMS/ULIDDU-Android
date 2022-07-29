@@ -81,32 +81,35 @@ public class FragmentProfile extends Fragment {
             }
         });
 
+        /*myTodoResponses.add(new MyTodoResponse("haeun","안녕하세요","2022-07-29",true,true));
+        myTodoResponses.add(new MyTodoResponse("haeun","안녕하세요","2022-07-29",false,true));
+        myTodoResponses.add(new MyTodoResponse("haeun","안녕하세요","2022-07-29",false,true));
+        myTodoResponses.add(new MyTodoResponse("haeun","안녕하세요","2022-07-29",true,true));
         myTodoResponses.add(new MyTodoResponse("haeun","안녕하세요","2022-07-29",false,true));
         myTodoResponses.add(new MyTodoResponse("haeun","안녕하세요","2022-07-29",false,true));
         myTodoResponses.add(new MyTodoResponse("haeun","안녕하세요","2022-07-29",false,true));
         myTodoResponses.add(new MyTodoResponse("haeun","안녕하세요","2022-07-29",false,true));
-        myTodoResponses.add(new MyTodoResponse("haeun","안녕하세요","2022-07-29",false,true));
-        myTodoResponses.add(new MyTodoResponse("haeun","안녕하세요","2022-07-29",false,true));
-        myTodoResponses.add(new MyTodoResponse("haeun","안녕하세요","2022-07-29",false,true));
-        myTodoResponses.add(new MyTodoResponse("haeun","안녕하세요","2022-07-29",false,true));
+        // */
 
         TodoRequest todoRequest = new TodoRequest(FragmentHome.todoyearmonth);
 
-        serviceApi.myTodo(ActivityLogin.accesstoken, todoRequest).enqueue(new Callback<MyTodoResponse>() {
+        Call call = serviceApi.myTodo(ActivityLogin.accesstoken, todoRequest);
+        call.enqueue(new Callback<List<MyTodoResponse>>() {
             @Override
-            public void onResponse(Call<MyTodoResponse> call, Response<MyTodoResponse> response) {
+            public void onResponse(Call<List<MyTodoResponse>> call, Response<List<MyTodoResponse>> response) {
                 if (response.isSuccessful()) {
-                    myTodoResponses.add(response.body());
+                    myTodoResponses.addAll(response.body());
                     myTodoAdapter.notifyDataSetChanged();
                 } else
                     Toast.makeText(getContext(), "error", Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onFailure(Call<MyTodoResponse> call, Throwable t) {
+            public void onFailure(Call<List<MyTodoResponse>> call, Throwable t) {
 
             }
         });
+        // */
 
         return rootview;
     }

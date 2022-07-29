@@ -23,7 +23,7 @@
             android:background="@color/white">
 
             <TextView
-                android:id="@+id/tvtitle"
+                android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="28dp"

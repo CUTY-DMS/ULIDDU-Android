@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -22,8 +23,8 @@
             android:layout_height="match_parent"
             android:background="@color/white">
 
-            <TextView
-                android:id="@+id/tvtitle"
+            <CheckBox
+                android:id="@+id/cbtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="28dp"
@@ -83,15 +84,27 @@
             <ImageView
                 android:id="@+id/ivDelete"
                 android:layout_width="31dp"
-                android:layout_height="30dp"
+                android:layout_height="31dp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tvsuccess"
                 app:layout_constraintHorizontal_bias="0.017"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvtitle"
+                app:layout_constraintTop_toBottomOf="@+id/cbtitle"
                 app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/car_ui_icon_delete" />
+
+            <ImageView
+                android:id="@+id/ivEdit"
+                android:layout_width="31dp"
+                android:layout_height="31dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivDelete"
+                app:layout_constraintTop_toBottomOf="@+id/cbtitle"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/ic_edit_note" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

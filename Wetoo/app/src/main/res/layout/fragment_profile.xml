@@ -23,7 +23,7 @@
         android:id="@+id/tvId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="userId"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -36,7 +36,7 @@
         android:id="@+id/tvAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="8dp"
         android:text="userAge"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -61,11 +61,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myRecyclerView"
-        android:layout_width="410dp"
+        android:layout_width="match_parent"
+        android:layout_height="504dp"
+        android:scrollbarSize="3dp"
         android:scrollbars="vertical"
-        android:scrollbarSize="5dp"
-        android:layout_height="466dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-2dp" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
