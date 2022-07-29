@@ -3,6 +3,7 @@ package com.example.wetoo.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -37,6 +38,7 @@ public class Edit extends AppCompatActivity {
                 edit();
             }
         });
+
     }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -54,8 +56,9 @@ public class Edit extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "제목을 작성해주세요", Toast.LENGTH_SHORT).show();
         if (content.length() == 0)
             Toast.makeText(getApplicationContext(), "내용을 작성해주세요", Toast.LENGTH_SHORT).show();
-        else
+        else{
             editStart();
+        }
     }
 
     private void editStart() {
@@ -67,17 +70,19 @@ public class Edit extends AppCompatActivity {
 
         ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
 
-        serviceApi.edit(ActivityLogin.accesstoken, Long.parseLong(String.valueOf(ActivityLogin.userId)), editRequest).enqueue(new Callback<EditResponse>() {
+
+        Call call = serviceApi.edit(ActivityLogin.accesstoken,6,editRequest);
+        call.enqueue(new Callback<EditResponse>() {
             @Override
             public void onResponse(Call<EditResponse> call, Response<EditResponse> response) {
-                if (response.isSuccessful()) {
                     Toast.makeText(Edit.this,"게시글이 수정되었습니다",Toast.LENGTH_SHORT).show();
-                }
+                    finish();
             }
 
             @Override
             public void onFailure(Call<EditResponse> call, Throwable t) {
                 Toast.makeText(Edit.this, "게시글이 수정되지 않았습니다.\n다시 시도해주세요",Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }

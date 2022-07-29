@@ -33,13 +33,13 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="제목을 입력하세요" />
+            android:hint="수정 할 제목을 입력하세요" />
 
         <EditText
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="내용을 입력하세요" />
+            android:hint="수정 할 내용을 입력하세요" />
 
     </LinearLayout>
 

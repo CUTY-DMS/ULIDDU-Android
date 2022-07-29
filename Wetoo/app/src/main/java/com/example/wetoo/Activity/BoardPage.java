@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.wetoo.API.ApiProvider;
 import com.example.wetoo.API.ServiceApi;
+import com.example.wetoo.Fragment.FragmentHome;
 import com.example.wetoo.R;
 import com.example.wetoo.Request.BoardRequest;
 import com.example.wetoo.databinding.ActivityBoardPageBinding;
@@ -31,7 +32,6 @@ public class BoardPage extends AppCompatActivity {
     private String tododate;
     private Boolean ispublic;
     private static String content;
-    private CalendarView calendarView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,14 +71,18 @@ public class BoardPage extends AppCompatActivity {
     public void post() {
         String title = binding.title.getText().toString();
         String content = binding.content.getText().toString();
-        /*Intent intent = new Intent();
-        intent = new Intent(getApplicationContext(),DetailPage.class);
-        intent.putExtra("content",content);*/
+
+
+        Intent contentIntent = new Intent();
+        contentIntent = new Intent(getApplicationContext(),DetailPage.class);
+        contentIntent.putExtra("content",content);
+        startActivity(contentIntent);
+
         ispublic = false;
 
         Calendar calendar = Calendar.getInstance();
         //캘린더뷰에서 날짜값 읽어오기
-        Date date = new Date(calendarView.getDate());
+        Date date = new Date(FragmentHome.calendarView.getDate());
         //캘린더 객체에 캘린더뷰 값을 넣음
         calendar.setTime(date);
 
