@@ -12,6 +12,8 @@ import com.example.wetoo.Response.EditResponse;
 import com.example.wetoo.Response.MyTodoResponse;
 import com.example.wetoo.Response.SearchResponse;
 import com.example.wetoo.Response.TodoResponse;
+import com.example.wetoo.Response.UserInfoResponse;
+
 import java.util.List;
 
 
@@ -19,6 +21,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
@@ -26,24 +29,27 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ServiceApi {
-    @POST("login") // 로그인
+
+    @POST("login")
+        // 로그인
     Call<LoginResponse> login(
             @Body LoginRequest loginRequest
     );
 
-    @POST("register") // 회원가입
+    @POST("register")   // 회원가입
     Call<Void> register(
             @Body RegisterRequest registerRequest
     );
 
-    @GET("user") // 내 정보 조회
+    @GET("user")    // 내 정보 조회
     Call<MyInfoResponse> MyInfo(
             @Header("Authorization") String token
     );
 
-    @GET("search/{userid}") // 유저 정보 검색
+    @GET("search/{userid}")     // 유저 정보 검색
     Call<SearchResponse> search(
-            @Header("Authorization") String token
+            @Header("Authorization") String token,
+            @Path("userid") String userid
     );
 
     @POST("todo")   // 투두 추가
@@ -52,21 +58,23 @@ public interface ServiceApi {
             @Body BoardRequest boardRequest
     );
 
-    @GET("todo/list/user/{id}")
+
+    @HTTP(method = "GET", path = "todo/list/user/{id}", hasBody = true)
     Call<List<TodoResponse>> todo(
             @Header("Authorization") String token,
             @Path("id") long id,
             @Body TodoRequest todoRequest
     );
 
-    @GET("todo/list")    // 내 투두리스트
-    Call<MyTodoResponse> myTodo(
+    @HTTP(method = "GET", path = "todo/list", hasBody = true)   // 내 투두리스트
+    Call<List<MyTodoResponse>> myTodo(
             @Header("Authorization") String token,
             @Body TodoRequest todoRequest
     );
 
 
-    @GET("todo/{id}")   // 투두 상세 보기
+    @GET("todo/{id}")
+        // 투두 상세 보기
     Call<DetailResponse> detail(
             @Header("Authorization") String token,
             @Path("id") long id
@@ -90,4 +98,9 @@ public interface ServiceApi {
             @Header("Authorization") String token
     );
 
+    @GET("user/{id}")
+    Call<UserInfoResponse> userInfo(
+            @Header("Authorization") String token,
+            @Path("id") String id
+    );
 }
