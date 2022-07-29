@@ -7,7 +7,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +20,7 @@ import com.example.wetoo.API.ApiProvider;
 import com.example.wetoo.API.ServiceApi;
 import com.example.wetoo.Activity.ActivityLogin;
 import com.example.wetoo.Activity.DetailPage;
+import com.example.wetoo.Activity.Edit;
 import com.example.wetoo.Fragment.FragmentHome;
 import com.example.wetoo.R;
 import com.example.wetoo.Response.DetailResponse;
@@ -52,7 +55,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         private TextView date;
         private TextView iscompleted;
         private TextView isliked;
-        private Button btDelete;
+        private ImageView btDelete;
 
         public TodoViewHolder(@NonNull View itemview) {
             super(itemview);
@@ -61,7 +64,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
             date = itemview.findViewById(R.id.tvdate);
             iscompleted = itemview.findViewById(R.id.tvsuccess);
             isliked = itemview.findViewById(R.id.tvLike);
-            btDelete = (Button) itemview.findViewById(R.id.btDelete);
+            btDelete = itemview.findViewById(R.id.ivDelete);
         }
     }
 
@@ -69,27 +72,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull TodoViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.btDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
-
-                serviceApi.delete(ActivityLogin.accesstoken, Long.parseLong(list.get(position).getId())).enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        if (response.isSuccessful()) {
-                            list.remove(position);
-                            notifyItemRemoved(position);
-                            Toast.makeText(v.getContext(), "삭제되었습니다.",Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-                    }
-                });
-            }
-        });
 
         holder.id.setText(list.get(position).getId());
         holder.title.setText(list.get(position).getTitle());

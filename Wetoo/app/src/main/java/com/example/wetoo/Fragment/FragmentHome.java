@@ -44,8 +44,8 @@ public class FragmentHome extends Fragment {
     private TodoAdapter todoAdapter;
     List<TodoResponse> todoResponsesList;
     private ImageView ivPost;
-    private CalendarView calendarView;
-    private ImageView ivDelete;
+    public static CalendarView calendarView;
+    public static String todoyearmonth;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -57,15 +57,6 @@ public class FragmentHome extends Fragment {
         recyclerView.setHasFixedSize(true);
         calendarView = rootview.findViewById(R.id.calendarView);
         ivPost = rootview.findViewById(R.id.ivPost);
-        ivDelete = rootview.findViewById(R.id.ivDelete);
-
-        ivDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent EditIntent = new Intent(getActivity(), Edit.class);
-                startActivity(EditIntent);
-            }
-        });
 
         ivPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +72,7 @@ public class FragmentHome extends Fragment {
         //캘린더 객체에 캘린더뷰 값을 넣음
         calendar.setTime(date);
 
-        String todoyearmonth = Integer.toString(calendar.get(Calendar.YEAR)) + "-0" + Integer.toString(calendar.get(Calendar.MONTH) + 1);
+        todoyearmonth = Integer.toString(calendar.get(Calendar.YEAR)) + "-0" + Integer.toString(calendar.get(Calendar.MONTH) + 1);
 
         TodoRequest todoRequest = new TodoRequest(todoyearmonth);
 

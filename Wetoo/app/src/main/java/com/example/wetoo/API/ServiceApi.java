@@ -1,5 +1,9 @@
 package com.example.wetoo.API;
 
+import com.example.wetoo.Request.LoginRequest;
+import com.example.wetoo.Response.LoginResponse;
+import com.example.wetoo.Request.RegisterRequest;
+import com.example.wetoo.Response.MyInfoResponse;
 import com.example.wetoo.Request.BoardRequest;
 import com.example.wetoo.Request.EditRequest;
 import com.example.wetoo.Request.TodoRequest;
@@ -8,20 +12,13 @@ import com.example.wetoo.Response.EditResponse;
 import com.example.wetoo.Response.MyTodoResponse;
 import com.example.wetoo.Response.SearchResponse;
 import com.example.wetoo.Response.TodoResponse;
-
-import java.util.ArrayList;
 import java.util.List;
-import com.example.wetoo.Request.LoginRequest;
-import com.example.wetoo.Response.LoginResponse;
-import com.example.wetoo.Request.RegisterRequest;
 
-import com.example.wetoo.Response.MyInfoResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
-import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
@@ -55,22 +52,24 @@ public interface ServiceApi {
             @Body BoardRequest boardRequest
     );
 
-    @HTTP(method = "GET", path = "todo/list/user/{id}", hasBody = true)
+    @GET("todo/list/user/{id}")
     Call<List<TodoResponse>> todo(
             @Header("Authorization") String token,
             @Path("id") long id,
             @Body TodoRequest todoRequest
     );
 
-    @GET("todo/list")   // 내 투두리스트
+    @GET("todo/list")    // 내 투두리스트
     Call<MyTodoResponse> myTodo(
             @Header("Authorization") String token,
             @Body TodoRequest todoRequest
     );
 
+
     @GET("todo/{id}")   // 투두 상세 보기
     Call<DetailResponse> detail(
-            @Header("Authorization") String token
+            @Header("Authorization") String token,
+            @Path("id") long id
     );
 
     @PATCH("todo/{id}")
@@ -80,7 +79,7 @@ public interface ServiceApi {
             @Body EditRequest editRequest
     );
 
-    @HTTP(method = "DELETE",path = "todo/{id}",hasBody = false)
+    @DELETE("todo/{id}")
     Call<Void> delete(
             @Header("Authorization") String token,
             @Path("id") long id

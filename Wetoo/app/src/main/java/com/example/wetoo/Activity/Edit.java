@@ -37,12 +37,6 @@ public class Edit extends AppCompatActivity {
                 edit();
             }
         });
-        binding.btDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // delete();
-            }
-        });
     }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -51,24 +45,6 @@ public class Edit extends AppCompatActivity {
         }
         return true;
     }
-
-    /*private void delete() {
-        ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
-
-        serviceApi.delete(ActivityLogin.accesstoken, Long.parseLong(list.get(position).getId())).enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful()) {
-                    .remove(position);
-                    notifyItemRemoved(position);
-                    Toast.makeText(v.getContext(), "삭제되었습니다.",Toast.LENGTH_SHORT).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-            }
-        });
-    }*/
 
     private void edit() {
         String title = binding.title.getText().toString();
@@ -91,7 +67,7 @@ public class Edit extends AppCompatActivity {
 
         ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
 
-        serviceApi.edit(ActivityLogin.accesstoken, Long.parseLong(ActivityLogin.userId), editRequest).enqueue(new Callback<EditResponse>() {
+        serviceApi.edit(ActivityLogin.accesstoken, Long.parseLong(String.valueOf(ActivityLogin.userId)), editRequest).enqueue(new Callback<EditResponse>() {
             @Override
             public void onResponse(Call<EditResponse> call, Response<EditResponse> response) {
                 if (response.isSuccessful()) {

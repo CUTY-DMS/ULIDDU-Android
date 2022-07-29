@@ -23,6 +23,7 @@ import com.example.wetoo.R;
 import com.example.wetoo.Request.TodoRequest;
 import com.example.wetoo.Response.MyInfoResponse;
 import com.example.wetoo.Response.MyTodoResponse;
+import com.example.wetoo.Response.TodoResponse;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -38,10 +39,9 @@ public class FragmentProfile extends Fragment {
     private TextView userName;
     private TextView userId;
     private TextView userAge;
-    private ArrayList<MyTodoResponse> myTodoResponses;
+    private List<MyTodoResponse> myTodoResponses;
     private MyTodoAdapter myTodoAdapter;
     String tododate;
-    private CalendarView calendarView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
@@ -53,18 +53,16 @@ public class FragmentProfile extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
 
+
         myTodoAdapter = new MyTodoAdapter(myTodoResponses);
 
         recyclerView.setAdapter(myTodoAdapter);
 
-        calendarView = rootview.findViewById(R.id.calendarView);
         userName = rootview.findViewById(R.id.tvName);
         userId = rootview.findViewById(R.id.tvId);
         userAge = rootview.findViewById(R.id.tvAge);
 
         ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
-
-
 
         serviceApi.MyInfo(ActivityLogin.accesstoken).enqueue(new Callback<MyInfoResponse>() {
             @Override
@@ -83,14 +81,16 @@ public class FragmentProfile extends Fragment {
             }
         });
 
-        Calendar calendar = Calendar.getInstance();
-        //캘린더뷰에서 날짜값 읽어오기
-        Date date = new Date(calendarView.getDate());
-        //캘린더 객체에 캘린더뷰 값을 넣음
-        calendar.setTime(date);
-        tododate = calendar.get(Calendar.YEAR) + "-0" + calendar.get(Calendar.MONTH) + 1;
+        myTodoResponses.add(new MyTodoResponse("haeun","안녕하세요","2022-07-29",false,true));
+        myTodoResponses.add(new MyTodoResponse("haeun","안녕하세요","2022-07-29",false,true));
+        myTodoResponses.add(new MyTodoResponse("haeun","안녕하세요","2022-07-29",false,true));
+        myTodoResponses.add(new MyTodoResponse("haeun","안녕하세요","2022-07-29",false,true));
+        myTodoResponses.add(new MyTodoResponse("haeun","안녕하세요","2022-07-29",false,true));
+        myTodoResponses.add(new MyTodoResponse("haeun","안녕하세요","2022-07-29",false,true));
+        myTodoResponses.add(new MyTodoResponse("haeun","안녕하세요","2022-07-29",false,true));
+        myTodoResponses.add(new MyTodoResponse("haeun","안녕하세요","2022-07-29",false,true));
 
-        /*TodoRequest todoRequest = new TodoRequest(tododate);
+        TodoRequest todoRequest = new TodoRequest(FragmentHome.todoyearmonth);
 
         serviceApi.myTodo(ActivityLogin.accesstoken, todoRequest).enqueue(new Callback<MyTodoResponse>() {
             @Override
@@ -106,7 +106,7 @@ public class FragmentProfile extends Fragment {
             public void onFailure(Call<MyTodoResponse> call, Throwable t) {
 
             }
-        });*/
+        });
 
         return rootview;
     }
