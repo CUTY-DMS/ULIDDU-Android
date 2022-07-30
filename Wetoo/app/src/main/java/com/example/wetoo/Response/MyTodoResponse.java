@@ -24,19 +24,39 @@ public class MyTodoResponse {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getTododate() {
         return tododate;
     }
 
+    public void setTododate(String tododate) {
+        this.tododate = tododate;
+    }
+
     public Boolean getIscompleted() {
         return iscompleted;
     }
 
+    public void setIscompleted(Boolean iscompleted) {
+        this.iscompleted = iscompleted;
+    }
+
     public Boolean getIsliked() {
         return isliked;
+    }
+
+    public void setIsliked(Boolean isliked) {
+        this.isliked = isliked;
     }
 }

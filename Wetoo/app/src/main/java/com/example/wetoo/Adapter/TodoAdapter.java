@@ -56,16 +56,14 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         private TextView date;
         private TextView iscompleted;
         private TextView isliked;
-        private ImageView btDelete;
 
         public TodoViewHolder(@NonNull View itemview) {
             super(itemview);
-            id = itemview.findViewById(R.id.tvuserid);
+            id = itemview.findViewById(R.id.tvid);
             title = itemview.findViewById(R.id.tvTitle);
             date = itemview.findViewById(R.id.tvdate);
             iscompleted = itemview.findViewById(R.id.tvsuccess);
             isliked = itemview.findViewById(R.id.tvLike);
-            btDelete = itemview.findViewById(R.id.ivDelete);
         }
     }
 
@@ -74,7 +72,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
     @Override
     public void onBindViewHolder(@NonNull TodoViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        holder.id.setText(list.get(position).getId());
+        holder.id.setText((int) list.get(position).getId());
         holder.title.setText(list.get(position).getTitle());
         holder.date.setText(list.get(position).getTodoDate());
 

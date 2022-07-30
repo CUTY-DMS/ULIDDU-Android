@@ -23,6 +23,7 @@ import com.example.wetoo.R;
 import com.example.wetoo.Response.DetailResponse;
 import com.example.wetoo.Response.MyTodoResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -50,7 +51,7 @@ public class MyTodoAdapter extends RecyclerView.Adapter<MyTodoAdapter.MyTodoView
         public MyTodoViewHolder(@NonNull View view) {
             super(view);
 
-            tvId = view.findViewById(R.id.tvid);
+            tvId = view.findViewById(R.id.tvmytodoid);
             cbTitle = view.findViewById(R.id.cbtitle);
             todoDate = view.findViewById(R.id.tvdate);
             iscompleted = view.findViewById(R.id.tvsuccess);
@@ -65,7 +66,7 @@ public class MyTodoAdapter extends RecyclerView.Adapter<MyTodoAdapter.MyTodoView
     @Override
     public MyTodoAdapter.MyTodoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.mytodolist,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.mytodolist, parent, false);
         return new MyTodoViewHolder(view);
     }
 
@@ -91,18 +92,19 @@ public class MyTodoAdapter extends RecyclerView.Adapter<MyTodoAdapter.MyTodoView
                         if (response.isSuccessful()) {
                             list.remove(position);
                             notifyItemRemoved(position);
-                            Toast.makeText(v.getContext(), "삭제되었습니다.",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(v.getContext(), "삭제되었습니다.", Toast.LENGTH_SHORT).show();
                         }
                     }
+
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(v.getContext(),"삭제 되지 않았습니다.",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext(), "삭제 되지 않았습니다.", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         });
 
-        holder.tvId.setText((int) list.get(position).getId());
+        holder.tvId.setText(String.valueOf(list.get(position).getId()));
         holder.cbTitle.setText(list.get(position).getTitle());
         holder.todoDate.setText(list.get(position).getTododate());
 
@@ -117,15 +119,14 @@ public class MyTodoAdapter extends RecyclerView.Adapter<MyTodoAdapter.MyTodoView
             }
         });
 
-        if(list.get(position).getIscompleted() == true) {
+        if (list.get(position).getIscompleted() == true) {
             holder.iscompleted.setText("완료");
             holder.cbTitle.setChecked(true);
-        }
-        else {
+        } else {
             holder.iscompleted.setText("미완료");
             holder.cbTitle.setChecked(false);
         }
-        if(list.get(position).getIsliked() == true)
+        if (list.get(position).getIsliked() == true)
             holder.isliked.setText("좋아요");
         else
             holder.isliked.setText("");
@@ -136,11 +137,10 @@ public class MyTodoAdapter extends RecyclerView.Adapter<MyTodoAdapter.MyTodoView
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), DetailPage.class);
 
-                intent.putExtra("id",list.get(position).getId());
+                intent.putExtra("id", list.get(position).getId());
                 intent.putExtra("title", list.get(position).getTitle());
-                intent.putExtra("userid", list.get(position).getId());
                 intent.putExtra("date", list.get(position).getTododate());
-                intent.putExtra("iscompleted",list.get(position).getIscompleted());
+                intent.putExtra("iscompleted", list.get(position).getIscompleted());
 
                 view.getContext().startActivity(intent);
             }

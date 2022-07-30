@@ -3,7 +3,7 @@ package com.example.wetoo.Response;
 import com.google.gson.annotations.SerializedName;
 
 public class TodoResponse {
-    private String id;
+    private long id;
     private String title;
 
     @SerializedName("todo-date")
@@ -12,7 +12,7 @@ public class TodoResponse {
     private Boolean iscompleted;
     private Boolean isliked;
 
-    public TodoResponse(String id, String title, String todoDate, Boolean iscompleted, Boolean isliked) {
+    public TodoResponse(long id, String title, String todoDate, Boolean iscompleted, Boolean isliked) {
         this.id = id;
         this.title = title;
         this.todoDate = todoDate;
@@ -20,11 +20,11 @@ public class TodoResponse {
         this.isliked = isliked;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

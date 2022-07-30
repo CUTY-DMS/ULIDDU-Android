@@ -30,8 +30,7 @@ import retrofit2.http.Path;
 
 public interface ServiceApi {
 
-    @POST("login")
-        // 로그인
+    @POST("login")      // 로그인
     Call<LoginResponse> login(
             @Body LoginRequest loginRequest
     );
@@ -67,6 +66,7 @@ public interface ServiceApi {
     );
 
     @HTTP(method = "GET", path = "todo/list", hasBody = true)   // 내 투두리스트
+    // @GET("todo/list")
     Call<List<MyTodoResponse>> myTodo(
             @Header("Authorization") String token,
             @Body TodoRequest todoRequest
