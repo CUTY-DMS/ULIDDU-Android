@@ -24,7 +24,6 @@ import retrofit2.Response;
 public class ActivityLogin extends AppCompatActivity {
 
     private ActivityLoginBinding binding;
-    public static String userId;
     public String password;
     public static String accesstoken;
     public static String refreshtoken;
@@ -68,7 +67,7 @@ public class ActivityLogin extends AppCompatActivity {
 
     public void loginResponse() {
 
-        userId = binding.etId.getText().toString().trim();
+        String userId = binding.etId.getText().toString().trim();
         String password = binding.etPassword.getText().toString().trim();
 
         // 정보 저장
