@@ -73,11 +73,6 @@ public class BoardPage extends AppCompatActivity {
         String content = binding.content.getText().toString();
 
 
-        Intent contentIntent = new Intent();
-        contentIntent = new Intent(getApplicationContext(),DetailPage.class);
-        contentIntent.putExtra("content",content);
-        startActivity(contentIntent);
-
         ispublic = false;
 
         Calendar calendar = Calendar.getInstance();
@@ -98,6 +93,10 @@ public class BoardPage extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Toast.makeText(BoardPage.this, "게시글 등록이 완료되었습니다!", Toast.LENGTH_SHORT).show();
+                /*Intent contentIntent = new Intent();
+                contentIntent = new Intent(getApplicationContext(),DetailPage.class);
+                contentIntent.putExtra("content",content);
+                startActivity(contentIntent);*/
                 finish();
             }
 

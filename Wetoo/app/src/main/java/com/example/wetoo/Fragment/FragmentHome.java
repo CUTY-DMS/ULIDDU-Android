@@ -28,6 +28,7 @@ import com.example.wetoo.Request.TodoRequest;
 import com.example.wetoo.Response.TodoResponse;
 import com.example.wetoo.Adapter.TodoAdapter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -45,7 +46,7 @@ public class FragmentHome extends Fragment {
     List<TodoResponse> todoResponsesList;
     private ImageView ivPost;
     public static CalendarView calendarView;
-    public static String todoyearmonth;
+    long tododate = System.currentTimeMillis();
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -66,15 +67,11 @@ public class FragmentHome extends Fragment {
             }
         });
 
-        Calendar calendar = Calendar.getInstance();
-        //캘린더뷰에서 날짜값 읽어오기
-        Date date = new Date(calendarView.getDate());
-        //캘린더 객체에 캘린더뷰 값을 넣음
-        calendar.setTime(date);
+        Date date = new Date(tododate);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+        String getTime = dateFormat.format(date);
 
-        todoyearmonth = Integer.toString(calendar.get(Calendar.YEAR)) + "-0" + Integer.toString(calendar.get(Calendar.MONTH) + 1);
-
-        TodoRequest todoRequest = new TodoRequest(todoyearmonth);
+        TodoRequest todoRequest = new TodoRequest(getTime);
 
         todoResponsesList = new ArrayList<>();
         linearLayoutManager = new LinearLayoutManager(getActivity());
