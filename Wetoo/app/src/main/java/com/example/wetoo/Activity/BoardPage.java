@@ -31,10 +31,10 @@ import retrofit2.Response;
 
 public class BoardPage extends AppCompatActivity {
 
-    public static long id;
     private ActivityBoardPageBinding binding;
     private Boolean ispublic;
     long tododate = System.currentTimeMillis();
+    public static long id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +91,7 @@ public class BoardPage extends AppCompatActivity {
             @Override
             public void onResponse(Call<BoardResponse> call, Response<BoardResponse> response) {
                 if (response.isSuccessful()) {
-                    id = (response.body().getId());
+                    id = response.body().getId();
                     Toast.makeText(BoardPage.this, "게시글 등록이 완료되었습니다!", Toast.LENGTH_SHORT).show();
                 }
                 /*Intent contentIntent = new Intent();

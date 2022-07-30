@@ -89,8 +89,6 @@ public class FragmentProfile extends Fragment {
             }
         });
 
-        myTodoResponses.add(new MyTodoResponse(BoardPage.id,"안녕하세요","2022-07-30",false,true));
-
         MyTodoRequest myTodoRequest = new MyTodoRequest(getTime);
 
 
@@ -109,10 +107,10 @@ public class FragmentProfile extends Fragment {
 
             @Override
             public void onFailure(Call<List<MyTodoResponse>> call, Throwable t) {
-                Toast.makeText(getContext(),"예기치 못한 오류가 발생했습니다.",Toast.LENGTH_SHORT).show();
             }
         });
-        // */
+
+        myTodoResponses.add(new MyTodoResponse(BoardPage.id,"title","2022-07-30",false,false));
 
         return rootview;
     }

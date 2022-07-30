@@ -93,10 +93,9 @@ public class FragmentSearch extends Fragment {
         serviceApi.search(ActivityLogin.accesstoken, text).enqueue(new Callback<SearchResponse>() {
             @Override
             public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
-                userid = searchResponse.getId();
-
+                if (response.isSuccessful() && response.body() != null)
+                    userid = searchResponse.getId();
                 userinfo();
-
                 userInfoResponseList.clear();
 
                 if (text.length() == 0) {

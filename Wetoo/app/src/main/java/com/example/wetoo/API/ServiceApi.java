@@ -67,11 +67,11 @@ public interface ServiceApi {
             @Body TodoRequest todoRequest
     );
 
-    @HTTP(method = "GET", path = "todo/list", hasBody = true)   // 내 투두리스트
-    // @GET("todo/list")
+
+    @HTTP(method = "GET", path = "todo/list", hasBody = true)  // 내 투두리스트
     Call<List<MyTodoResponse>> myTodo(
             @Header("Authorization") String token,
-            @Body MyTodoRequest MytodoRequest
+            @Body MyTodoRequest myTodoRequest
     );
 
 
