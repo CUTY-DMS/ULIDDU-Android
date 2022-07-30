@@ -25,6 +25,7 @@ import com.example.wetoo.Response.MyInfoResponse;
 import com.example.wetoo.Response.MyTodoResponse;
 import com.example.wetoo.Response.TodoResponse;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -41,12 +42,16 @@ public class FragmentProfile extends Fragment {
     private TextView userAge;
     private List<MyTodoResponse> myTodoResponses;
     private MyTodoAdapter myTodoAdapter;
-    String tododate;
+    long tododate = System.currentTimeMillis();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup rootview = (ViewGroup) inflater.inflate(R.layout.fragment_profile, container, false);
+
+        Date date = new Date(tododate);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+        String getTime = dateFormat.format(date);
 
         myTodoResponses = new ArrayList<>();
         RecyclerView recyclerView = rootview.findViewById(R.id.myRecyclerView);
@@ -91,7 +96,7 @@ public class FragmentProfile extends Fragment {
         myTodoResponses.add(new MyTodoResponse("haeun","안녕하세요","2022-07-29",false,true));
         // */
 
-        TodoRequest todoRequest = new TodoRequest(FragmentHome.todoyearmonth);
+        TodoRequest todoRequest = new TodoRequest(getTime);
 
         Call call = serviceApi.myTodo(ActivityLogin.accesstoken, todoRequest);
         call.enqueue(new Callback<List<MyTodoResponse>>() {
@@ -106,6 +111,7 @@ public class FragmentProfile extends Fragment {
 
             @Override
             public void onFailure(Call<List<MyTodoResponse>> call, Throwable t) {
+                Toast.makeText(getContext(),"예기치 못한 오류가 발생했습니다.",Toast.LENGTH_SHORT).show();
 
             }
         });

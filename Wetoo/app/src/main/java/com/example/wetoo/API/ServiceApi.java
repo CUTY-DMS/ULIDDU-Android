@@ -73,8 +73,7 @@ public interface ServiceApi {
     );
 
 
-    @GET("todo/{id}")
-        // 투두 상세 보기
+    @GET("todo/{id}")   // 투두 상세 보기
     Call<DetailResponse> detail(
             @Header("Authorization") String token,
             @Path("id") long id

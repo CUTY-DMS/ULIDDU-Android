@@ -50,7 +50,7 @@ public class MyTodoAdapter extends RecyclerView.Adapter<MyTodoAdapter.MyTodoView
         public MyTodoViewHolder(@NonNull View view) {
             super(view);
 
-            tvId = view.findViewById(R.id.tvuserid);
+            tvId = view.findViewById(R.id.tvid);
             cbTitle = view.findViewById(R.id.cbtitle);
             todoDate = view.findViewById(R.id.tvdate);
             iscompleted = view.findViewById(R.id.tvsuccess);
@@ -64,6 +64,7 @@ public class MyTodoAdapter extends RecyclerView.Adapter<MyTodoAdapter.MyTodoView
     @NonNull
     @Override
     public MyTodoAdapter.MyTodoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.mytodolist,parent,false);
         return new MyTodoViewHolder(view);
     }
@@ -84,7 +85,7 @@ public class MyTodoAdapter extends RecyclerView.Adapter<MyTodoAdapter.MyTodoView
             public void onClick(View v) {
                 ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
 
-                serviceApi.delete(ActivityLogin.accesstoken, 1).enqueue(new Callback<Void>() {
+                serviceApi.delete(ActivityLogin.accesstoken, 12).enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if (response.isSuccessful()) {
@@ -101,7 +102,7 @@ public class MyTodoAdapter extends RecyclerView.Adapter<MyTodoAdapter.MyTodoView
             }
         });
 
-        holder.tvId.setText(list.get(position).getId());
+        holder.tvId.setText((int) list.get(position).getId());
         holder.cbTitle.setText(list.get(position).getTitle());
         holder.todoDate.setText(list.get(position).getTododate());
 
