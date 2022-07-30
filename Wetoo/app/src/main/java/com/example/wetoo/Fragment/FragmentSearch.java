@@ -62,18 +62,17 @@ public class FragmentSearch extends Fragment {
                 return false;
             }
         });
-
-        search();
+        // search();
 
         return view;
     }
 
 
-    private void search() {
+    /*private void search() {
 
         ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
 
-        serviceApi.search(ActivityLogin.accesstoken,ActivityLogin.userId).enqueue(new Callback<SearchResponse>() {
+        serviceApi.search(ActivityLogin.accesstoken,6).enqueue(new Callback<SearchResponse>() {
             @Override
             public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
                 searchResponseList.add(response.body());
@@ -84,7 +83,6 @@ public class FragmentSearch extends Fragment {
             public void onFailure(Call<SearchResponse> call, Throwable t) {
 
             }
-        });
+        });*/
     }
 
-}
