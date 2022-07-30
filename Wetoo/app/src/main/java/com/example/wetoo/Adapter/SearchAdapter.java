@@ -24,7 +24,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
         public SearchViewHolder(@NonNull View itemView) {
             super(itemView);
-            id = itemView.findViewById(R.id.tvuserid);
+            id = itemView.findViewById(R.id.tvid);
         }
     }
 

@@ -30,7 +30,7 @@ public class DetailPage extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         String title = extras.getString("title");
-        String userId = extras.getString("userid");
+        String userId = extras.getString("id");
         String date = extras.getString("date");
         String iscompleted = extras.getString("iscompleted");
 
