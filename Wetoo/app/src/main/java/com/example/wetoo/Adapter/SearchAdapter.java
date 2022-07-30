@@ -6,39 +6,36 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.PluralsRes;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wetoo.R;
 import com.example.wetoo.Response.SearchResponse;
+import com.example.wetoo.Response.UserInfoResponse;
 
 import java.util.List;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder> {
 
-    private List<SearchResponse> list;
+    private List<UserInfoResponse> userInfoResponses;
 
 
     public class SearchViewHolder extends RecyclerView.ViewHolder {
         private TextView id;
+        private TextView age;
+        private TextView name;
 
         public SearchViewHolder(@NonNull View itemView) {
             super(itemView);
             id = itemView.findViewById(R.id.tvid);
+            age = itemView.findViewById(R.id.tvage);
+            name = itemView.findViewById(R.id.tvsearchname);
         }
     }
 
-    public void filterList(List<SearchResponse> filterllist) {
-        // below line is to add our filtered
-        // list in our course array list.
-        list = filterllist;
-        // below line is to notify our adapter
-        // as change in recycler view data.
-        notifyDataSetChanged();
-    }
-
-    public SearchAdapter(List<SearchResponse> list) {
-        this.list = list;
+    public SearchAdapter(List<UserInfoResponse> userInfoResponses) {
+        this.userInfoResponses = userInfoResponses;
     }
 
     @NonNull
@@ -50,18 +47,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     @Override
     public void onBindViewHolder(@NonNull SearchViewHolder holder, int position) {
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        holder.id.setText(list.get(position).getId());
+        holder.name.setText(userInfoResponses.get(position).getName());
+        holder.id.setText(userInfoResponses.get(position).getUserId());
+        holder.age.setText(userInfoResponses.get(position).getAge());
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return userInfoResponses.size();
     }
 }

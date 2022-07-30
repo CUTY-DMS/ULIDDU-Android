@@ -6,20 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.FragmentSearch">
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_view"
+    <EditText
+        android:id="@+id/etuserId"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:iconifiedByDefault="false"
-        app:queryHint="검색어를 입력하시오"
-        tools:ignore="MissingConstraints" />
+        android:layout_height="55dp"
+        android:hint="유저 아이디를 검색하세요"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchRecyclerView"
         android:layout_width="409dp"
         android:layout_height="681dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="49dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/etuserId"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="1dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
