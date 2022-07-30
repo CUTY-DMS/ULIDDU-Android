@@ -71,7 +71,7 @@ public class Edit extends AppCompatActivity {
         ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
 
 
-        Call call = serviceApi.edit(ActivityLogin.accesstoken,6,editRequest);
+        Call call = serviceApi.edit(ActivityLogin.accesstoken,BoardPage.id,editRequest);
         call.enqueue(new Callback<EditResponse>() {
             @Override
             public void onResponse(Call<EditResponse> call, Response<EditResponse> response) {

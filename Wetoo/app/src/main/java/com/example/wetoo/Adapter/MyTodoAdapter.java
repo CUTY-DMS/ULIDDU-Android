@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.wetoo.API.ApiProvider;
 import com.example.wetoo.API.ServiceApi;
 import com.example.wetoo.Activity.ActivityLogin;
+import com.example.wetoo.Activity.BoardPage;
 import com.example.wetoo.Activity.DetailPage;
 import com.example.wetoo.Activity.Edit;
 import com.example.wetoo.R;

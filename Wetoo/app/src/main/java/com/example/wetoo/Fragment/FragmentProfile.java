@@ -18,8 +18,10 @@ import android.widget.Toast;
 import com.example.wetoo.API.ApiProvider;
 import com.example.wetoo.API.ServiceApi;
 import com.example.wetoo.Activity.ActivityLogin;
+import com.example.wetoo.Activity.BoardPage;
 import com.example.wetoo.Adapter.MyTodoAdapter;
 import com.example.wetoo.R;
+import com.example.wetoo.Request.MyTodoRequest;
 import com.example.wetoo.Request.TodoRequest;
 import com.example.wetoo.Response.MyInfoResponse;
 import com.example.wetoo.Response.MyTodoResponse;
@@ -76,7 +78,7 @@ public class FragmentProfile extends Fragment {
                 if (response.isSuccessful() && response.body() != null) {
                     userName.setText("이름 : " + response.body().getUserName());
                     userId.setText("아이디 : " + response.body().getUserId());
-                    userAge.setText("나이 : " + String.valueOf(response.body().getUserAge()));
+                    userAge.setText("나이 : " + (String.valueOf(response.body().getUserAge())));
                 }
             }
 
@@ -87,22 +89,21 @@ public class FragmentProfile extends Fragment {
             }
         });
 
+        myTodoResponses.add(new MyTodoResponse(BoardPage.id,"안녕하세요","2022-07-30",false,true));
 
-        TodoRequest todoRequest = new TodoRequest(getTime);
+        MyTodoRequest myTodoRequest = new MyTodoRequest(getTime);
 
-        serviceApi.myTodo(ActivityLogin.accesstoken, todoRequest).enqueue(new Callback<List<MyTodoResponse>>() {
+
+        serviceApi.myTodo(ActivityLogin.accesstoken, myTodoRequest).enqueue(new Callback<List<MyTodoResponse>>() {
             @Override
             public void onResponse(Call<List<MyTodoResponse>> call, Response<List<MyTodoResponse>> response) {
                 if (response.code() == 200) {
                     myTodoResponses.addAll(response.body());
                     myTodoAdapter.notifyDataSetChanged();
-                }
-                else if (response.isSuccessful())
-                {
+                } else if (response.isSuccessful()) {
                     myTodoResponses.addAll(response.body());
                     myTodoAdapter.notifyDataSetChanged();
-                }
-                else
+                } else
                     Toast.makeText(getContext(), "error", Toast.LENGTH_SHORT).show();
             }
 

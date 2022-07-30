@@ -1,6 +1,8 @@
 package com.example.wetoo.API;
 
 import com.example.wetoo.Request.LoginRequest;
+import com.example.wetoo.Request.MyTodoRequest;
+import com.example.wetoo.Response.BoardResponse;
 import com.example.wetoo.Response.LoginResponse;
 import com.example.wetoo.Request.RegisterRequest;
 import com.example.wetoo.Response.MyInfoResponse;
@@ -52,7 +54,7 @@ public interface ServiceApi {
     );
 
     @POST("todo")   // 투두 추가
-    Call<Void> board(
+    Call<BoardResponse> board(
             @Header("Authorization") String token,
             @Body BoardRequest boardRequest
     );
@@ -69,7 +71,7 @@ public interface ServiceApi {
     // @GET("todo/list")
     Call<List<MyTodoResponse>> myTodo(
             @Header("Authorization") String token,
-            @Body TodoRequest todoRequest
+            @Body MyTodoRequest MytodoRequest
     );
 
 

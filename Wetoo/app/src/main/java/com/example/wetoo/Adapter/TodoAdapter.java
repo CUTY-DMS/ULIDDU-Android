@@ -72,7 +72,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
     @Override
     public void onBindViewHolder(@NonNull TodoViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        holder.id.setText((int) list.get(position).getId());
+        holder.id.setText(String.valueOf(list.get(position).getId()));
         holder.title.setText(list.get(position).getTitle());
         holder.date.setText(list.get(position).getTodoDate());
 

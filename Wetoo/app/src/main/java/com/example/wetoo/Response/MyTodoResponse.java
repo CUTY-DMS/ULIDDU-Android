@@ -3,6 +3,7 @@ package com.example.wetoo.Response;
 import com.google.gson.annotations.SerializedName;
 
 public class MyTodoResponse {
+
     private long id;
     private String title;
 

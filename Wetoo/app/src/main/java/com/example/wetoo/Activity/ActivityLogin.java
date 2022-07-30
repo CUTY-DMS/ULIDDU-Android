@@ -92,7 +92,6 @@ public class ActivityLogin extends AppCompatActivity {
         serviceApi.login(loginRequest).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-
                 if (response.isSuccessful() && response.body() != null){
                     if (response.code() == 200) {
                         accesstoken = "Bearer "+response.body().getAccessToken();

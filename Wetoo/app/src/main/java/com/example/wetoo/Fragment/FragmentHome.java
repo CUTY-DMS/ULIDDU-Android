@@ -82,18 +82,11 @@ public class FragmentHome extends Fragment {
         todoAdapter = new TodoAdapter(todoResponsesList);
         recyclerView.setAdapter(todoAdapter);
 
-        /*todoResponsesList.add(new TodoResponse("haeun","안녕하세요","2022-07-29",false,true));
-        todoResponsesList.add(new TodoResponse("rlaisqls","안녕하세요","2022-07-29",false,true));
-        todoResponsesList.add(new TodoResponse("rlaisqls","안녕하세요","2022-07-29",true,true));
-        todoResponsesList.add(new TodoResponse("haeun","안녕하세요","2022-07-29",false,true));
-        todoResponsesList.add(new TodoResponse("haeun","안녕하세요","2022-07-29",false,true));
-        todoResponsesList.add(new TodoResponse("haeun","안녕하세요","2022-07-29",true,true));
-        todoResponsesList.add(new TodoResponse("haeun","안녕하세요","2022-07-29",true,true));
-        todoResponsesList.add(new TodoResponse("haeun","안녕하세요","2022-07-29",false,true));*/
+        todoResponsesList.add(new TodoResponse(1,"안녕하세요","2022-07-30",false,true));
 
         ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
 
-        serviceApi.todo(ActivityLogin.accesstoken, 6, todoRequest).enqueue(new Callback<List<TodoResponse>>() {
+        serviceApi.todo(ActivityLogin.accesstoken, BoardPage.id, todoRequest).enqueue(new Callback<List<TodoResponse>>() {
             @Override
             public void onResponse(Call<List<TodoResponse>> call, Response<List<TodoResponse>> response) {
                     Log.e("error","errrrrrorrr");
@@ -103,6 +96,7 @@ public class FragmentHome extends Fragment {
 
             @Override
             public void onFailure(Call<List<TodoResponse>> call, Throwable t) {
+                Toast.makeText(getContext(),  String.valueOf(BoardPage.id),Toast.LENGTH_SHORT).show();
                 Toast.makeText(getContext(), "ToDoList 를 불러오지 못했습니다.", Toast.LENGTH_SHORT).show();
             }
         });

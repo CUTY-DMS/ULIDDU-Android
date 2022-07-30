@@ -17,8 +17,11 @@ import com.example.wetoo.API.ServiceApi;
 import com.example.wetoo.Fragment.FragmentHome;
 import com.example.wetoo.R;
 import com.example.wetoo.Request.BoardRequest;
+import com.example.wetoo.Request.TodoRequest;
+import com.example.wetoo.Response.BoardResponse;
 import com.example.wetoo.databinding.ActivityBoardPageBinding;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -28,10 +31,10 @@ import retrofit2.Response;
 
 public class BoardPage extends AppCompatActivity {
 
+    public static long id;
     private ActivityBoardPageBinding binding;
-    private String tododate;
     private Boolean ispublic;
-    private static String content;
+    long tododate = System.currentTimeMillis();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,28 +74,26 @@ public class BoardPage extends AppCompatActivity {
     public void post() {
         String title = binding.title.getText().toString();
         String content = binding.content.getText().toString();
-
-
         ispublic = false;
 
-        Calendar calendar = Calendar.getInstance();
-        //캘린더뷰에서 날짜값 읽어오기
-        Date date = new Date(FragmentHome.calendarView.getDate());
-        //캘린더 객체에 캘린더뷰 값을 넣음
-        calendar.setTime(date);
 
-        tododate = Integer.toString(calendar.get(Calendar.YEAR)) + "-0" + Integer.toString(calendar.get(Calendar.MONTH) + 1)+"-"+Integer.toString(calendar.get(Calendar.DATE));
+        Date date = new Date(tododate);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String getTime = dateFormat.format(date);
 
-
-        BoardRequest boardRequest = new BoardRequest(title, content, ispublic, tododate);
+        BoardRequest boardRequest = new BoardRequest(title, content, ispublic, getTime);
 
         ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
 
-        Call<Void> call = serviceApi.board(ActivityLogin.accesstoken, boardRequest);
-        call.enqueue(new Callback<Void>() {
+        Call<BoardResponse> call = serviceApi.board(ActivityLogin.accesstoken, boardRequest);
+
+        call.enqueue(new Callback<BoardResponse>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(BoardPage.this, "게시글 등록이 완료되었습니다!", Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<BoardResponse> call, Response<BoardResponse> response) {
+                if (response.isSuccessful()) {
+                    id = (response.body().getId());
+                    Toast.makeText(BoardPage.this, "게시글 등록이 완료되었습니다!", Toast.LENGTH_SHORT).show();
+                }
                 /*Intent contentIntent = new Intent();
                 contentIntent = new Intent(getApplicationContext(),DetailPage.class);
                 contentIntent.putExtra("content",content);
@@ -101,7 +102,7 @@ public class BoardPage extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(Call<BoardResponse> call, Throwable t) {
             }
         });
 
