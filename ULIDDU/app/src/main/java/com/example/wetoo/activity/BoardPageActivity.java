@@ -1,28 +1,20 @@
-package com.example.wetoo.Activity;
+package com.example.wetoo.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
-import android.widget.CalendarView;
 import android.widget.Toast;
 
-import com.example.wetoo.API.ApiProvider;
-import com.example.wetoo.API.ServiceApi;
-import com.example.wetoo.Fragment.FragmentHome;
-import com.example.wetoo.R;
-import com.example.wetoo.Request.BoardRequest;
-import com.example.wetoo.Request.TodoRequest;
-import com.example.wetoo.Response.BoardResponse;
+import com.example.wetoo.api.ApiProvider;
+import com.example.wetoo.api.ServiceApi;
+import com.example.wetoo.request.BoardRequest;
+import com.example.wetoo.response.BoardResponse;
 import com.example.wetoo.databinding.ActivityBoardPageBinding;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import retrofit2.Call;
@@ -85,7 +77,7 @@ public class BoardPage extends AppCompatActivity {
 
         ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
 
-        Call<BoardResponse> call = serviceApi.board(ActivityLogin.accesstoken, boardRequest);
+        Call<BoardResponse> call = serviceApi.board(LoginActivity.accesstoken, boardRequest);
 
         call.enqueue(new Callback<BoardResponse>() {
             @Override

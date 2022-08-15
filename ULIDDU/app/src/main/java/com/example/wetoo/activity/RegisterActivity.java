@@ -1,4 +1,4 @@
-package com.example.wetoo.Activity;
+package com.example.wetoo.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,9 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.wetoo.Request.RegisterRequest;
-import com.example.wetoo.API.ApiProvider;
-import com.example.wetoo.API.ServiceApi;
+import com.example.wetoo.request.RegisterRequest;
+import com.example.wetoo.api.ApiProvider;
+import com.example.wetoo.api.ServiceApi;
 import com.example.wetoo.databinding.ActivitySignUpBinding;
 
 import retrofit2.Call;
@@ -42,7 +42,7 @@ public class ActivityRegister extends AppCompatActivity {
         binding.nextBtLogin2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ActivityLogin.class);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -85,7 +85,7 @@ public class ActivityRegister extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     if (response.code() == 204) {
                         Toast.makeText(ActivityRegister.this, "로그인을 해주세요", Toast.LENGTH_SHORT).show();
-                        Intent myIntent = new Intent(getApplicationContext(), ActivityLogin.class);
+                        Intent myIntent = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(myIntent);
                         finish();
                     } else {

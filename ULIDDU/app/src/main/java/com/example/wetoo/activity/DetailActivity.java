@@ -1,15 +1,13 @@
-package com.example.wetoo.Activity;
+package com.example.wetoo.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.wetoo.API.ApiProvider;
-import com.example.wetoo.API.ServiceApi;
-import com.example.wetoo.Adapter.MyTodoAdapter;
-import com.example.wetoo.R;
-import com.example.wetoo.Response.DetailResponse;
+import com.example.wetoo.api.ApiProvider;
+import com.example.wetoo.api.ServiceApi;
+import com.example.wetoo.response.DetailResponse;
 import com.example.wetoo.databinding.ActivityDetailPageBinding;
 
 import retrofit2.Call;
@@ -51,7 +49,7 @@ public class DetailPage extends AppCompatActivity {
 
         ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
 
-        serviceApi.detail(ActivityLogin.accesstoken, 6).enqueue(new Callback<DetailResponse>() {
+        serviceApi.detail(LoginActivity.accesstoken, 6).enqueue(new Callback<DetailResponse>() {
             @Override
             public void onResponse(Call<DetailResponse> call, Response<DetailResponse> response) {
 
