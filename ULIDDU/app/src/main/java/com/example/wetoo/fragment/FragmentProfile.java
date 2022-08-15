@@ -1,4 +1,4 @@
-package com.example.wetoo.Fragment;
+package com.example.wetoo.fragment;
 
 import android.os.Bundle;
 
@@ -11,25 +11,21 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.wetoo.API.ApiProvider;
-import com.example.wetoo.API.ServiceApi;
-import com.example.wetoo.Activity.ActivityLogin;
-import com.example.wetoo.Activity.BoardPage;
-import com.example.wetoo.Adapter.MyTodoAdapter;
+import com.example.wetoo.api.ApiProvider;
+import com.example.wetoo.api.ServiceApi;
+import com.example.wetoo.activity.LoginActivity;
+import com.example.wetoo.activity.BoardPageActivity;
+import com.example.wetoo.adapter.MyTodoAdapter;
 import com.example.wetoo.R;
-import com.example.wetoo.Request.MyTodoRequest;
-import com.example.wetoo.Request.TodoRequest;
-import com.example.wetoo.Response.MyInfoResponse;
-import com.example.wetoo.Response.MyTodoResponse;
-import com.example.wetoo.Response.TodoResponse;
+import com.example.wetoo.request.MyTodoRequest;
+import com.example.wetoo.response.MyInfoResponse;
+import com.example.wetoo.response.MyTodoResponse;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -42,7 +38,7 @@ public class FragmentProfile extends Fragment {
     private TextView userName;
     private TextView userId;
     private TextView userAge;
-    List<MyTodoResponse> myTodoResponses;
+    ArrayList<MyTodoResponse> myTodoResponses;
     private MyTodoAdapter myTodoAdapter;
     long tododate;
 
@@ -51,10 +47,7 @@ public class FragmentProfile extends Fragment {
                              Bundle savedInstanceState) {
         ViewGroup rootview = (ViewGroup) inflater.inflate(R.layout.fragment_profile, container, false);
 
-        tododate = System.currentTimeMillis();
-        Date date = new Date(tododate);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
-        String getTime = dateFormat.format(date);
+
 
         myTodoResponses = new ArrayList<>();
         RecyclerView recyclerView = rootview.findViewById(R.id.myRecyclerView);
@@ -72,7 +65,7 @@ public class FragmentProfile extends Fragment {
 
         ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
 
-        serviceApi.MyInfo(ActivityLogin.accesstoken).enqueue(new Callback<MyInfoResponse>() {
+        serviceApi.MyInfo(LoginActivity.accesstoken).enqueue(new Callback<MyInfoResponse>() {
             @Override
             public void onResponse(Call<MyInfoResponse> call, Response<MyInfoResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -89,28 +82,30 @@ public class FragmentProfile extends Fragment {
             }
         });
 
-        MyTodoRequest myTodoRequest = new MyTodoRequest(getTime);
+        tododate = System.currentTimeMillis();
+        Date date = new Date(tododate);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+        String getTime = dateFormat.format(date);
 
+        myTodoResponses.add(new MyTodoResponse(1,"title","2022-08-16",false,true));
 
-        serviceApi.myTodo(ActivityLogin.accesstoken, myTodoRequest).enqueue(new Callback<List<MyTodoResponse>>() {
+        serviceApi.myTodo(LoginActivity.accesstoken, getTime).enqueue(new Callback<ArrayList<MyTodoResponse>>() {
             @Override
-            public void onResponse(Call<List<MyTodoResponse>> call, Response<List<MyTodoResponse>> response) {
+            public void onResponse(Call<ArrayList<MyTodoResponse>> call, Response<ArrayList<MyTodoResponse>> response) {
                 if (response.code() == 200) {
                     myTodoResponses.addAll(response.body());
                     myTodoAdapter.notifyDataSetChanged();
                 } else if (response.isSuccessful()) {
                     myTodoResponses.addAll(response.body());
                     myTodoAdapter.notifyDataSetChanged();
-                } else
-                    Toast.makeText(getContext(), "error", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
-            public void onFailure(Call<List<MyTodoResponse>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<MyTodoResponse>> call, Throwable t) {
+                Log.e("eeeeee","error");
             }
         });
-
-        myTodoResponses.add(new MyTodoResponse(BoardPage.id,"title","2022-07-30",false,false));
 
         return rootview;
     }

@@ -1,34 +1,25 @@
-package com.example.wetoo.Adapter;
+package com.example.wetoo.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wetoo.API.ApiProvider;
-import com.example.wetoo.API.ServiceApi;
-import com.example.wetoo.Activity.ActivityLogin;
-import com.example.wetoo.Activity.DetailPage;
-import com.example.wetoo.Activity.Edit;
-import com.example.wetoo.Fragment.FragmentHome;
+import com.example.wetoo.activity.DetailActivity;
 import com.example.wetoo.R;
-import com.example.wetoo.Response.DetailResponse;
-import com.example.wetoo.Response.TodoResponse;
+import com.example.wetoo.activity.LoginActivity;
+import com.example.wetoo.api.ApiProvider;
+import com.example.wetoo.api.ServiceApi;
+import com.example.wetoo.response.TodoResponse;
 import com.google.protobuf.Api;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -55,7 +46,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         private TextView title;
         private TextView date;
         private TextView iscompleted;
-        private TextView isliked;
+        private ImageView isliked;
 
         public TodoViewHolder(@NonNull View itemview) {
             super(itemview);
@@ -63,7 +54,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
             title = itemview.findViewById(R.id.tvTitle);
             date = itemview.findViewById(R.id.tvdate);
             iscompleted = itemview.findViewById(R.id.tvsuccess);
-            isliked = itemview.findViewById(R.id.tvLike);
+            isliked = itemview.findViewById(R.id.ivLike);
         }
     }
 
@@ -90,15 +81,38 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         }
 
         if (list.get(position).getIsliked() == true) {
-            holder.isliked.setText("좋아요");
+            holder.isliked.setImageResource(R.drawable.ic_baseline_favorite_24);
         } else {
-            holder.isliked.setText("");
+            holder.isliked.setImageResource(R.drawable.ic_favorite);
         }
+
+        holder.isliked.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ServiceApi serviceApi = ApiProvider.getInstance().create(ServiceApi.class);
+
+                serviceApi.like(LoginActivity.accesstoken,list.get(position).getId()).enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        if (list.get(position).getIsliked() == true) {
+                            holder.isliked.setImageResource(R.drawable.ic_baseline_favorite_24);
+                        } else {
+                            holder.isliked.setImageResource(R.drawable.ic_favorite);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), DetailPage.class);
+                Intent intent = new Intent(view.getContext(), DetailActivity.class);
 
                 intent.putExtra("id",list.get(position).getId());
                 intent.putExtra("title", list.get(position).getTitle());

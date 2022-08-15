@@ -17,7 +17,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ActivityRegister extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     private ActivitySignUpBinding binding;
     private ServiceApi serviceApi;
@@ -57,11 +57,11 @@ public class ActivityRegister extends AppCompatActivity {
         age = Integer.parseInt(binding.etAge.getText().toString());
 
         if (newId.trim().length() == 0 || newPw.trim().length() == 0 || name.trim().length() == 0 || newId == null || newPw == null || name == null || age <= 0) {
-            Toast.makeText(ActivityRegister.this, "올바른 정보를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegisterActivity.this, "올바른 정보를 입력해주세요.", Toast.LENGTH_SHORT).show();
         } else if (newId.length() > 10) {
-            Toast.makeText(ActivityRegister.this, "아이디를 10자 이하로 작성해주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegisterActivity.this, "아이디를 10자 이하로 작성해주세요", Toast.LENGTH_SHORT).show();
         } else if (name.length() > 10) {
-            Toast.makeText(ActivityRegister.this,"이름을 10자 이하로 작성해주세요",Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegisterActivity.this,"이름을 10자 이하로 작성해주세요",Toast.LENGTH_SHORT).show();
         } else {
             registerResponse();
         }
@@ -84,23 +84,23 @@ public class ActivityRegister extends AppCompatActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     if (response.code() == 204) {
-                        Toast.makeText(ActivityRegister.this, "로그인을 해주세요", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "로그인을 해주세요", Toast.LENGTH_SHORT).show();
                         Intent myIntent = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(myIntent);
                         finish();
                     } else {
-                        Toast.makeText(ActivityRegister.this, "예기치 못한 오류가 발생했습니다.\n다시 시도해주세요!",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "예기치 못한 오류가 발생했습니다.\n다시 시도해주세요!",Toast.LENGTH_SHORT).show();
                     }
                 } else if (response.code() == 409) {
-                    Toast.makeText(ActivityRegister.this, "중복된 아이디입니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "중복된 아이디입니다.", Toast.LENGTH_SHORT).show();
                 } else if (response.code() == 400) {
-                    Toast.makeText(ActivityRegister.this,"비밀번호는 8~15자여야 합니다.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this,"비밀번호는 8~15자여야 합니다.",Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 Log.e("TAG", "onFailure");
-                Toast.makeText(ActivityRegister.this,"회원가입 에러 발생", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this,"회원가입 에러 발생", Toast.LENGTH_SHORT).show();
             }
         });
     }

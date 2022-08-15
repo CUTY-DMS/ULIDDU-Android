@@ -1,12 +1,4 @@
-package com.example.wetoo.API;
-
-import android.app.DownloadManager;
-import android.app.VoiceInteractor;
-import android.view.textclassifier.TextLinks;
-
-import com.squareup.okhttp.HttpUrl;
-
-import java.lang.reflect.Field;
+package com.example.wetoo.api;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

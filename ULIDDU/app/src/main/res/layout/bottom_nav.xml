@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.BottomNav">
+    tools:context=".activity.BottomNav">
 
     <FrameLayout
         android:id="@+id/menu_frame_layout"
@@ -25,4 +25,5 @@
       app:labelVisibilityMode="selected"
       app:menu="@menu/menu"
       app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

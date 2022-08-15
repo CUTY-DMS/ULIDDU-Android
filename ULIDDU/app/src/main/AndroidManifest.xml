@@ -15,30 +15,30 @@
         android:usesCleartextTraffic="true"
         tools:ignore="ExtraText">
         <activity
-            android:name=".Activity.Edit"
+            android:name=".activity.EditActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
-            android:name=".Activity.MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.BoardPage"
+            android:name=".activity.BoardPageActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
-            android:name=".Activity.DetailPage"
+            android:name=".activity.DetailActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.BottomNav"
+            android:name=".activity.BottomNav"
             android:exported="true" />
         <activity
-            android:name=".Activity.ActivityRegister"
+            android:name=".activity.RegisterActivity"
             android:exported="true" />
         <activity
-            android:name=".Activity.ActivityLogin"
+            android:name=".activity.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".Activity.SplashActivity"
+            android:name=".activity.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>

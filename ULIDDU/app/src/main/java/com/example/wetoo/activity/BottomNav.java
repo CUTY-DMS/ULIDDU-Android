@@ -1,4 +1,4 @@
-package com.example.wetoo.Activity;
+package com.example.wetoo.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,9 +8,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.wetoo.Fragment.FragmentHome;
-import com.example.wetoo.Fragment.FragmentProfile;
-import com.example.wetoo.Fragment.FragmentSearch;
+import com.example.wetoo.fragment.FragmentHome;
+import com.example.wetoo.fragment.FragmentProfile;
+import com.example.wetoo.fragment.FragmentSearch;
 import com.example.wetoo.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;

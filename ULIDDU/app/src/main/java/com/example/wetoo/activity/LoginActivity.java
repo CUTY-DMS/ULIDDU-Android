@@ -1,7 +1,6 @@
-package com.example.wetoo.Activity;
+package com.example.wetoo.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -10,18 +9,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.wetoo.Fragment.FragmentHome;
-import com.example.wetoo.Request.LoginRequest;
-import com.example.wetoo.Response.LoginResponse;
-import com.example.wetoo.API.ApiProvider;
-import com.example.wetoo.API.ServiceApi;
+import com.example.wetoo.fragment.FragmentHome;
+import com.example.wetoo.request.LoginRequest;
+import com.example.wetoo.response.LoginResponse;
+import com.example.wetoo.api.ApiProvider;
+import com.example.wetoo.api.ServiceApi;
 import com.example.wetoo.databinding.ActivityLoginBinding;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ActivityLogin extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private ActivityLoginBinding binding;
     public String password;
@@ -46,7 +45,7 @@ public class ActivityLogin extends AppCompatActivity {
         binding.tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ActivityRegister.class);
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                 startActivity(intent);
                 finish();
 
@@ -59,7 +58,7 @@ public class ActivityLogin extends AppCompatActivity {
         password = binding.etPassword.getText().toString();
 
         if(userId.trim().length() == 0 || password.trim().length() == 0 || userId == null || password == null){
-            Toast.makeText(ActivityLogin.this, "올바른 로그인 정보를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "올바른 로그인 정보를 입력해주세요.", Toast.LENGTH_SHORT).show();
         } else {
             loginResponse();
         }
@@ -97,21 +96,21 @@ public class ActivityLogin extends AppCompatActivity {
                         accesstoken = "Bearer "+response.body().getAccessToken();
                         refreshtoken = response.body().getRefreshToken();
 
-                        Toast.makeText(ActivityLogin.this, "환영합니다", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "환영합니다", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), BottomNav.class);
                         startActivity(intent);
                     }
                     else if (response.code() == 404) {
-                        Toast.makeText(ActivityLogin.this, "아이디 또는 비밀번호를 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "아이디 또는 비밀번호를 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
                     }
                 }
                 else {
-                    Toast.makeText(ActivityLogin.this, "예기치 못한 오류가 발생하였습니다.\n아이디 또는 비밀번호를 다시 확인해주세요.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "예기치 못한 오류가 발생하였습니다.\n아이디 또는 비밀번호를 다시 확인해주세요.",Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(ActivityLogin.this, "서버 에러!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "서버 에러!", Toast.LENGTH_SHORT).show();
             }
         });
     }

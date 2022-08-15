@@ -1,4 +1,4 @@
-package com.example.wetoo.Activity;
+package com.example.wetoo.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,14 +21,14 @@ public class MainActivity extends AppCompatActivity {
         binding.btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent LoginIntent = new Intent(getApplicationContext(), ActivityLogin.class);
+                Intent LoginIntent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(LoginIntent);
             }
         });
         binding.btSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent SingUpIntent = new Intent(getApplicationContext(), ActivityRegister.class);
+                Intent SingUpIntent = new Intent(getApplicationContext(), RegisterActivity.class);
                 startActivity(SingUpIntent);
             }
         });

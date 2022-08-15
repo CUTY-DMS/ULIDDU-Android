@@ -1,6 +1,4 @@
-package com.example.wetoo.Response;
-
-import com.google.gson.annotations.SerializedName;
+package com.example.wetoo.response;
 
 public class RegisterResponse {
     private String status;

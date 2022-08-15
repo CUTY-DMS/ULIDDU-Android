@@ -1,8 +1,6 @@
-package com.example.wetoo.Request;
+package com.example.wetoo.request;
 
 import com.google.gson.annotations.SerializedName;
-
-import retrofit2.Response;
 
 public class LoginRequest {
 

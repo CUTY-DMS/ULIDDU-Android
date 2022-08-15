@@ -1,21 +1,22 @@
-package com.example.wetoo.API;
+package com.example.wetoo.api;
 
-import com.example.wetoo.Request.LoginRequest;
-import com.example.wetoo.Request.MyTodoRequest;
-import com.example.wetoo.Response.BoardResponse;
-import com.example.wetoo.Response.LoginResponse;
-import com.example.wetoo.Request.RegisterRequest;
-import com.example.wetoo.Response.MyInfoResponse;
-import com.example.wetoo.Request.BoardRequest;
-import com.example.wetoo.Request.EditRequest;
-import com.example.wetoo.Request.TodoRequest;
-import com.example.wetoo.Response.DetailResponse;
-import com.example.wetoo.Response.EditResponse;
-import com.example.wetoo.Response.MyTodoResponse;
-import com.example.wetoo.Response.SearchResponse;
-import com.example.wetoo.Response.TodoResponse;
-import com.example.wetoo.Response.UserInfoResponse;
+import com.example.wetoo.request.LoginRequest;
+import com.example.wetoo.request.MyTodoRequest;
+import com.example.wetoo.response.BoardResponse;
+import com.example.wetoo.response.LoginResponse;
+import com.example.wetoo.request.RegisterRequest;
+import com.example.wetoo.response.MyInfoResponse;
+import com.example.wetoo.request.BoardRequest;
+import com.example.wetoo.request.EditRequest;
+import com.example.wetoo.request.TodoRequest;
+import com.example.wetoo.response.DetailResponse;
+import com.example.wetoo.response.EditResponse;
+import com.example.wetoo.response.MyTodoResponse;
+import com.example.wetoo.response.SearchResponse;
+import com.example.wetoo.response.TodoResponse;
+import com.example.wetoo.response.UserInfoResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -29,6 +30,7 @@ import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ServiceApi {
 
@@ -60,18 +62,18 @@ public interface ServiceApi {
     );
 
 
-    @HTTP(method = "GET", path = "todo/list/user/{id}", hasBody = true)
-    Call<List<TodoResponse>> todo(
+    @GET("todo/list/user/{id}")     // 유저 투두리스트
+    Call<ArrayList<TodoResponse>> todo(
             @Header("Authorization") String token,
             @Path("id") long id,
-            @Body TodoRequest todoRequest
+            @Query("todo-year-month") String todoyearmonth
     );
 
 
-    @HTTP(method = "GET", path = "todo/list", hasBody = true)  // 내 투두리스트
-    Call<List<MyTodoResponse>> myTodo(
+    @GET("todo/list")   // 내 투두리스트
+    Call<ArrayList<MyTodoResponse>> myTodo(
             @Header("Authorization") String token,
-            @Body MyTodoRequest myTodoRequest
+            @Query("todo-year-month") String todoyearmonth
     );
 
 
@@ -97,6 +99,12 @@ public interface ServiceApi {
     @PUT("todo/{id}")
     Call<Void> success(
             @Header("Authorization") String token
+    );
+
+    @PUT("todo/{id}/like")
+    Call<Void> like(
+            @Header("Authorization") String token,
+            @Path("id") long id
     );
 
     @GET("user/{id}")

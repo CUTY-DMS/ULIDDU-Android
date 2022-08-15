@@ -1,4 +1,4 @@
-package com.example.wetoo.Response;
+package com.example.wetoo.response;
 
 import com.google.gson.annotations.SerializedName;
 

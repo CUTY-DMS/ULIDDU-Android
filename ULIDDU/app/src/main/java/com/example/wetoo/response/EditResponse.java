@@ -1,4 +1,4 @@
-package com.example.wetoo.Response;
+package com.example.wetoo.response;
 
 public class EditResponse {
     private String id;

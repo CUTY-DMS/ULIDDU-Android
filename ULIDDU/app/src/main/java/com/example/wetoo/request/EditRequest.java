@@ -1,4 +1,4 @@
-package com.example.wetoo.Request;
+package com.example.wetoo.request;
 
 public class EditRequest {
     private String title;

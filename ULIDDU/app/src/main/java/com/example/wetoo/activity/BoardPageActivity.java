@@ -21,7 +21,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BoardPage extends AppCompatActivity {
+public class BoardPageActivity extends AppCompatActivity {
 
     private ActivityBoardPageBinding binding;
     private Boolean ispublic;
@@ -84,7 +84,7 @@ public class BoardPage extends AppCompatActivity {
             public void onResponse(Call<BoardResponse> call, Response<BoardResponse> response) {
                 if (response.isSuccessful()) {
                     id = response.body().getId();
-                    Toast.makeText(BoardPage.this, "게시글 등록이 완료되었습니다!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BoardPageActivity.this, "게시글 등록이 완료되었습니다!", Toast.LENGTH_SHORT).show();
                 }
                 /*Intent contentIntent = new Intent();
                 contentIntent = new Intent(getApplicationContext(),DetailPage.class);
